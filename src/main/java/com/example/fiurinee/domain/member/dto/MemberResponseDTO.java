@@ -37,7 +37,7 @@ public class MemberResponseDTO {
                                 "name", anniversary.getName(),
                                 "anniversaryDate", anniversary.getAnniversaryDate().toString().substring(0,10),
                                 "type", anniversary.getType().name(),
-                                "d-day", anniversaryService.calculateDDay(anniversary)
+                                "dDays", anniversaryService.calculateDDay(anniversary)
                         ))
                         .collect(Collectors.toList()))
                 .build();

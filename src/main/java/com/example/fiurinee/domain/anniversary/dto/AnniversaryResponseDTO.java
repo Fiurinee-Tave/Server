@@ -1,6 +1,7 @@
 package com.example.fiurinee.domain.anniversary.dto;
 
 import com.example.fiurinee.domain.anniversary.entity.Anniversary;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -18,6 +19,8 @@ public class AnniversaryResponseDTO {
     private String name;
     private String anniversaryDate;
     private String type;
+
+    @JsonProperty("dDays")
     private List<Map<String, Integer>> dDays;
 
     public static AnniversaryResponseDTO of(Anniversary anniversary, List<Map<String, Integer>> dDays) {
