@@ -5,6 +5,8 @@ import com.example.fiurinee.domain.member.service.MemberService;
 import com.example.fiurinee.domain.preferList.controller.api.PreferListApi;
 import com.example.fiurinee.domain.preferList.entity.PreferList;
 import com.example.fiurinee.domain.preferList.service.PreferListService;
+import com.example.fiurinee.domain.recommendFlower.entity.RecommendFlower;
+import com.example.fiurinee.domain.recommendFlower.service.RecommendFlowerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,7 @@ public class PreferListController implements PreferListApi {
 
     private final MemberService memberService;
     private final PreferListService preferListService;
+    private final RecommendFlowerService recommendFlowerService;
 
     @GetMapping("/{id}/{order}")
     public Boolean savePrefer(@PathVariable("id") Long id,
@@ -29,6 +32,12 @@ public class PreferListController implements PreferListApi {
                 .build();
         preferListService.save(build);
 
+        int size = byId.getRecommendFlowers().size();
+
+        RecommendFlower recommendFlower = byId.getRecommendFlowers().get(size - Math.toIntExact(order));
+
+        recommendFlowerService.editPrefer(recommendFlower,true);
+
         return true;
 
     }
@@ -39,6 +48,12 @@ public class PreferListController implements PreferListApi {
         Member byId = memberService.findById(id);
 
         preferListService.delete(preferListService.findByMemberAndOrder(byId,order));
+
+        int size = byId.getRecommendFlowers().size();
+
+        RecommendFlower recommendFlower = byId.getRecommendFlowers().get(size - Math.toIntExact(order));
+
+        recommendFlowerService.editPrefer(recommendFlower,false);
 
         return true;
     }
