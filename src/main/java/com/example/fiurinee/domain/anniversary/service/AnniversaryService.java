@@ -40,6 +40,12 @@ public class AnniversaryService {
             throw new IllegalArgumentException("Invalid anniversary type");
         }
 
+        LocalDate requestDate = requestDTO.getDate();
+        LocalDate currentDate = LocalDate.now(ZoneId.of("UTC"));
+        if (requestDate.isAfter(currentDate)) {
+            throw new IllegalArgumentException("Date cannot be in the future");
+        }
+
         ZonedDateTime zonedDateTime = requestDTO.getDate().atStartOfDay(ZoneId.of("UTC"));
         Timestamp timestamp = Timestamp.from(zonedDateTime.toInstant());
 
@@ -62,6 +68,12 @@ public class AnniversaryService {
         }
 
         validateAnniversaryType(requestDTO.getType());
+
+        LocalDate requestDate = requestDTO.getDate();
+        LocalDate currentDate = LocalDate.now(ZoneId.of("UTC"));
+        if (requestDate.isAfter(currentDate)) {
+            throw new IllegalArgumentException("Date cannot be in the future");
+        }
 
         ZonedDateTime zonedDateTime = requestDTO.getDate().atStartOfDay(ZoneId.of("UTC"));
         Timestamp timestamp = Timestamp.from(zonedDateTime.toInstant());
