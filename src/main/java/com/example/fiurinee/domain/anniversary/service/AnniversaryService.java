@@ -118,7 +118,7 @@ public class AnniversaryService {
                 LocalDate hundredDays = anniversaryDate.plusDays(nextDay + i * 100);
                 if (!hundredDays.isBefore(today)) {
                     Map<String, Integer> dDay = new HashMap<>();
-                    dDay.put((nextDay + i * 100) + "days", (int) ChronoUnit.DAYS.between(today, hundredDays));
+                    dDay.put((nextDay + i * 100) + "days", (int) ChronoUnit.DAYS.between(today, hundredDays)-1);
                     dDayList.add(dDay);
                     return dDayList;
                 }
