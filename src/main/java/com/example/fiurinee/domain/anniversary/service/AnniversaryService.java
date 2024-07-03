@@ -108,33 +108,46 @@ public class AnniversaryService {
         LocalDate today = LocalDate.now();
         LocalDateTime anniversaryDateTime = anniversary.getAnniversaryDate().toLocalDateTime();
         LocalDate anniversaryDate = anniversaryDateTime.toLocalDate();
-        long yearsDifference = ChronoUnit.YEARS.between(anniversaryDate, today);
+
+        Map<String, Integer> closestDDay = null;
+        int minDays = Integer.MAX_VALUE;
 
         if (anniversary.getType() == AnniversaryType.연인) {
             int daysPassed = (int) ChronoUnit.DAYS.between(anniversaryDate, today);
             int nextDay = ((daysPassed / 100) + 1) * 100;
 
-            for (int i = 0; i < 1; i++) {
+            for (int i = 0; i < 1; i++) {  // Only find the next closest 100-day anniversary
                 LocalDate hundredDays = anniversaryDate.plusDays(nextDay + i * 100);
                 if (!hundredDays.isBefore(today)) {
-                    Map<String, Integer> dDay = new HashMap<>();
-                    dDay.put((nextDay + i * 100) + "days", (int) ChronoUnit.DAYS.between(today, hundredDays)-1);
-                    dDayList.add(dDay);
+                    int daysToHundredDays = (int) ChronoUnit.DAYS.between(today, hundredDays) - 1;
+                    if (daysToHundredDays < minDays) {
+                        minDays = daysToHundredDays;
+                        closestDDay = new HashMap<>();
+                        closestDDay.put((nextDay + i * 100) + "days", daysToHundredDays);
+                    }
                     break;
                 }
             }
         }
 
-
+        long yearsDifference = ChronoUnit.YEARS.between(anniversaryDate, today);
         for (int i = 1; i <= yearsDifference + 1; i++) {
             LocalDate yearAnniversary = anniversaryDate.plusYears(i);
             if (!yearAnniversary.isBefore(today)) {
-                Map<String, Integer> dDay = new HashMap<>();
-                dDay.put("year", (int) ChronoUnit.DAYS.between(today, yearAnniversary));
-                dDayList.add(dDay);
+                int daysToYearAnniversary = (int) ChronoUnit.DAYS.between(today, yearAnniversary);
+                if (daysToYearAnniversary < minDays) {
+                    minDays = daysToYearAnniversary;
+                    closestDDay = new HashMap<>();
+                    closestDDay.put("year", daysToYearAnniversary);
+                }
                 break;
             }
         }
+
+        if (closestDDay != null) {
+            dDayList.add(closestDDay);
+        }
+
 
         return dDayList;
     }
