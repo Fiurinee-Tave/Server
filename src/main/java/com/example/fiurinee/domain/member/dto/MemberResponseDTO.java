@@ -5,6 +5,7 @@ import com.example.fiurinee.domain.member.entity.Member;
 import lombok.*;
 
 import java.net.URL;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -32,6 +33,8 @@ public class MemberResponseDTO {
                 .profileImage(member.getProfileImage())
                 .alarm(member.isAlarm())
                 .anniversaries(member.getAnniversaries().stream()
+                        .sorted(Comparator.comparingInt(anniversary ->
+                                anniversaryService.calculateDDay(anniversary).get(0).values().iterator().next()))
                         .map(anniversary -> Map.<String, Object>of(
                                 "id", anniversary.getId(),
                                 "name", anniversary.getName(),
