@@ -120,7 +120,7 @@ public class AnniversaryService {
                     Map<String, Integer> dDay = new HashMap<>();
                     dDay.put((nextDay + i * 100) + "days", (int) ChronoUnit.DAYS.between(today, hundredDays)-1);
                     dDayList.add(dDay);
-                    return dDayList;
+                    break;
                 }
             }
         }
@@ -132,7 +132,7 @@ public class AnniversaryService {
                 Map<String, Integer> dDay = new HashMap<>();
                 dDay.put("year", (int) ChronoUnit.DAYS.between(today, yearAnniversary));
                 dDayList.add(dDay);
-                return dDayList;
+                break;
             }
         }
 
