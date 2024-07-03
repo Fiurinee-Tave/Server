@@ -32,13 +32,21 @@ public class MemberResponseDTO {
                 .profileImage(member.getProfileImage())
                 .alarm(member.isAlarm())
                 .anniversaries(member.getAnniversaries().stream()
-                        .map(anniversary -> Map.<String, Object>of(
-                                "id", anniversary.getId(),
-                                "name", anniversary.getName(),
-                                "anniversaryDate", anniversary.getAnniversaryDate().toString().substring(0,10),
-                                "type", anniversary.getType().name(),
-                                "dDays", anniversaryService.calculateDDay(anniversary)
-                        ))
+                        .map(anniversary -> {
+                            List<Map<String, Integer>> dDays = anniversaryService.calculateDDay(anniversary);
+                            return Map.of(
+                                    "id", anniversary.getId(),
+                                    "name", anniversary.getName(),
+                                    "anniversaryDate", anniversary.getAnniversaryDate().toString().substring(0, 10),
+                                    "type", anniversary.getType().name(),
+                                    "dDays", dDays
+                            );
+                        })
+                        .sorted((a1, a2) -> {
+                            Integer dDay1 = (Integer) ((Map.Entry) ((Map<String, Integer>) a1.get("dDays").get(0)).entrySet().iterator().next()).getValue();
+                            Integer dDay2 = (Integer) ((Map.Entry) ((Map<String, Integer>) a2.get("dDays").get(0)).entrySet().iterator().next()).getValue();
+                            return dDay1.compareTo(dDay2);
+                        })
                         .collect(Collectors.toList()))
                 .build();
     }
