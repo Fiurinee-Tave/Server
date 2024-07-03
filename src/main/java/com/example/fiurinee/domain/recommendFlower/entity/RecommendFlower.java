@@ -30,4 +30,8 @@ public class RecommendFlower {
 
     @OneToMany(mappedBy = "recommendFlower", cascade = CascadeType.ALL)
     private List<MatchingFlower> matchingFlowers;
+
+    public void editPrefer(Boolean value){
+        this.prefer = value;
+    }
 }

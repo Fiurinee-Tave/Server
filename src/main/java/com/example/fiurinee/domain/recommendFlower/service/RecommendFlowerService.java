@@ -31,9 +31,6 @@ public class RecommendFlowerService {
 
     @Transactional
     public void editPrefer(RecommendFlower recommendFlower, Boolean value){
-        Boolean prefer = recommendFlower.getPrefer();
-
-        prefer = value;
-
+        recommendFlower.editPrefer(value);
     }
 }

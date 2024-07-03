@@ -71,7 +71,7 @@ public class RecommendFlowerDto {
         RecommendComment recommendComment = recommendComments.get(recommendComments.size() - order.intValue());
 
         recommendFlowerDto.recommendMessage = recommendComment.getContent();
-        recommendFlowerDto.prefer = recommendComment.getPrefer();
+        recommendFlowerDto.prefer = recommendFlower.getPrefer();
 
         return recommendFlowerDto;
     }
