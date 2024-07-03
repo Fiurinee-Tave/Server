@@ -43,8 +43,8 @@ public class MemberResponseDTO {
                             );
                         })
                         .sorted((a1, a2) -> {
-                            Integer dDay1 = (Integer) ((Map.Entry) ((Map<String, Integer>) a1.get("dDays").get(0)).entrySet().iterator().next()).getValue();
-                            Integer dDay2 = (Integer) ((Map.Entry) ((Map<String, Integer>) a2.get("dDays").get(0)).entrySet().iterator().next()).getValue();
+                            Integer dDay1 = (Integer) ((Map<String, Integer>) ((List<?>) a1.get("dDays")).get(0)).values().iterator().next();
+                            Integer dDay2 = (Integer) ((Map<String, Integer>) ((List<?>) a2.get("dDays")).get(0)).values().iterator().next();
                             return dDay1.compareTo(dDay2);
                         })
                         .collect(Collectors.toList()))
