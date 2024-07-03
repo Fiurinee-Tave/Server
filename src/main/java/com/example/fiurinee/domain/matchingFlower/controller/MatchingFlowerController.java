@@ -90,17 +90,47 @@ public class MatchingFlowerController implements MatchingFlowerApi {
 //    public boolean test(){
 //        MatchingFlower build1 = MatchingFlower.builder()
 //                .flower(flowerService.findByNameAndFlowerLanguage("검은포플라", "용기"))
-//                .recommendFlower(recommendFlowerService.findById(3L))
+//                .recommendFlower(recommendFlowerService.findById(1L))
 //                .build();
 //
 //        matchingFlowerService.save(build1);
 //
 //        MatchingFlower build2 = MatchingFlower.builder()
 //                .flower(flowerService.findByNameAndFlowerLanguage("군자란", "고귀"))
-//                .recommendFlower(recommendFlowerService.findById(3L))
+//                .recommendFlower(recommendFlowerService.findById(1L))
 //                .build();
 //
 //        matchingFlowerService.save(build2);
+//
+//        MatchingFlower build3 = MatchingFlower.builder()
+//                .flower(flowerService.findByNameAndFlowerLanguage("나도풍란", "인내"))
+//                .recommendFlower(recommendFlowerService.findById(2L))
+//                .build();
+//
+//        matchingFlowerService.save(build3);
+//
+//        MatchingFlower build4 = MatchingFlower.builder()
+//                .flower(flowerService.findByNameAndFlowerLanguage("노랑 히야신", "승부"))
+//                .recommendFlower(recommendFlowerService.findById(2L))
+//                .build();
+//
+//        matchingFlowerService.save(build4);
+//
+//        MatchingFlower build5 = MatchingFlower.builder()
+//                .flower(flowerService.findByNameAndFlowerLanguage("노랑수선화", "사랑에 답하여"))
+//                .recommendFlower(recommendFlowerService.findById(3L))
+//                .build();
+//
+//        matchingFlowerService.save(build5);
+//
+//        MatchingFlower build6 = MatchingFlower.builder()
+//                .flower(flowerService.findByNameAndFlowerLanguage("노랑제비꽃", "수줍은 사랑"))
+//                .recommendFlower(recommendFlowerService.findById(3L))
+//                .build();
+//
+//        matchingFlowerService.save(build6);
+//
+//
 //
 //        return true;
 //
