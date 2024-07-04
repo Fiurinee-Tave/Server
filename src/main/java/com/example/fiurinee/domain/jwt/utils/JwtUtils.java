@@ -52,8 +52,9 @@ public class JwtUtils {
         String socialId = (String) claims.get("socialId");
         String role = (String) claims.get("role");
         Role memberRole = Role.valueOf(role);
+        String phoneNumber = (String) claims.get("phoneNumber");
 
-        MemberDto memberDto = new MemberDto(id, email, name, socialId, memberRole);
+        MemberDto memberDto = new MemberDto(id, email, name, socialId, memberRole,phoneNumber);
         Set<SimpleGrantedAuthority> authorities = Collections.singleton(new SimpleGrantedAuthority(memberDto.role().getValue()));
         PrincipalDetail principalDetail = new PrincipalDetail(memberDto, authorities);
 

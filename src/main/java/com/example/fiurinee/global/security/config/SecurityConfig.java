@@ -72,6 +72,8 @@ public class SecurityConfig {
                                 "/swagger-ui/index.html", "/swagger-ui/**", "/v3/api-docs/**","/swagger-resources/**", "/v3/api-docs").permitAll()
                         //비회원 전용 api
                         .requestMatchers("/main/today","/main/season","/model/ment","/model/*/non").permitAll()
+                        //sms api
+                        .requestMatchers("/sms/prove/*","/sms/send").permitAll()
                         .anyRequest().authenticated());
 
         http.addFilterBefore(jwtVerifyFilter(), UsernamePasswordAuthenticationFilter.class);

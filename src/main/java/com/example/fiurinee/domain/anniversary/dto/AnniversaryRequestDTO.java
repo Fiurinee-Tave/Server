@@ -13,4 +13,10 @@ public class AnniversaryRequestDTO {
     private String name;
     private LocalDate date;
     private String type;
+
+    public AnniversaryRequestDTO(String name, LocalDate date, String type) {
+        this.name = name;
+        this.date = date;
+        this.type = type;
+    }
 }

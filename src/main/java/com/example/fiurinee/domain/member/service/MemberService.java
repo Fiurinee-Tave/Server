@@ -37,5 +37,11 @@ public class MemberService {
         return MemberResponseDTO.of(member);
     }
 
+    @Transactional
+    public void updatePhoneNumber(Long id, String phoneNumber){
+        Member byId = this.findById(id);
+        byId.updatePhoneNumber(phoneNumber);
+    }
+
 
 }

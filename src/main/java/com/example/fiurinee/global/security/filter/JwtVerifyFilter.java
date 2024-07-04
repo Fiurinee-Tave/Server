@@ -29,7 +29,9 @@ public class JwtVerifyFilter extends OncePerRequestFilter {
             //Swagger
             "/swagger-ui/index.html", "/swagger-ui/**", "/v3/api-docs/**", "/swagger-resources/**", "/v3/api-docs",
             //비회원 전용 api
-            "/main/today","/main/season","/model/ment","/model/*/non"};
+            "/main/today","/main/season","/model/ment","/model/*/non",
+            //sms api
+            "/sms/prove/*","/sms/send"};
     private final RedisUtil redisUtil;
 
 

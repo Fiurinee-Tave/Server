@@ -43,7 +43,7 @@ public class OAuth2UserService extends DefaultOAuth2UserService {
         Optional<Member> bySocialId = memberRepository.findBySocialId(socialId);
         Member member = bySocialId.orElseGet(() -> saveSocialMember(socialId, name,email, accessToken.getTokenValue()));
         updateAccessToken(member, accessToken.getTokenValue());
-        MemberDto memberDto = new MemberDto(member.getId(), member.getEmail(), member.getName(), member.getSocialId(), member.getRole());
+        MemberDto memberDto = new MemberDto(member.getId(), member.getEmail(), member.getName(), member.getSocialId(), member.getRole(), member.getPhoneNumber());
 
         return new PrincipalDetail(
                 memberDto,
