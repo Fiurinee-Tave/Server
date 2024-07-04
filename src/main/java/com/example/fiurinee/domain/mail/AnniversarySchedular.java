@@ -26,7 +26,7 @@ public class AnniversarySchedular {
         this.memberService = memberService;
     }
 
-    @Scheduled(cron = "0 0 9 * * *", zone = "Asia/Seoul")
+    @Scheduled(cron = "0 30 14 * * *", zone = "Asia/Seoul")
     @Transactional
     public void sendAnniversaryEmails() {
         List<Member> members = memberService.findAll();

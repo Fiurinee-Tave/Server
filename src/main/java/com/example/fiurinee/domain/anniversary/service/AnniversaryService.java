@@ -96,7 +96,7 @@ public class AnniversaryService {
     }
 
 
-        public List<Map<String, Integer>> calculateDDay(Anniversary anniversary) {
+    public List<Map<String, Integer>> calculateDDay(Anniversary anniversary) {
             List<Map<String, Integer>> dDayList = new ArrayList<>();
             ZoneId koreaZoneId = ZoneId.of("Asia/Seoul");
             LocalDate today = LocalDate.now(koreaZoneId);
