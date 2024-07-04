@@ -64,5 +64,14 @@ public interface ModelApi {
     public ResponseEntity<ResponseHarmonyWitnMentDto> selectFlower(@Parameter(description = "회원의 아이디") @PathVariable ("memberId") Long memberId,
                                                                    @Parameter(description = "선택한 꽃의 아이디") @PathVariable ("flowerId") Long flowerId,
                                                                    @Parameter(description = "입력했던 멘트") @RequestBody String ment);
+    @Operation(
+            summary = "비회원 사용자가 꽃을 선택했을 시 호출",
+            description = "꽃을 선택했을 시 선택한 꽃의 id 그리고 이전에 입력했던 사용자의 멘트를 보내주세요",
+            security = @SecurityRequirement(name = "bearerAuth")
+    )
+    @ApiResponse(responseCode = "200", description = "멘트 추천 및 어울리는 꽃 추천 성공")
+    @PostMapping("/{flowerId}/non")
+    public ResponseEntity<ResponseHarmonyWitnMentDto> selectFlowerNonMember(@Parameter(description = "꽃의 아이디") @PathVariable ("flowerId") Long flowerId,
+                                                                            @Parameter(description = "회원이 입력 했던 멘트") @RequestBody String ment);
 }
 

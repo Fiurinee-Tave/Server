@@ -45,6 +45,12 @@ public class AnniversaryService {
             throw new IllegalArgumentException("Invalid anniversary type");
         }
 
+        LocalDate requestDate = requestDTO.getDate();
+        LocalDate currentDate = LocalDate.now(ZoneId.of("UTC"));
+        if (requestDate.isAfter(currentDate)) {
+            throw new IllegalArgumentException("Date cannot be in the future");
+        }
+
         ZonedDateTime zonedDateTime = requestDTO.getDate().atStartOfDay(ZoneId.of("UTC"));
         Timestamp timestamp = Timestamp.from(zonedDateTime.toInstant());
 
@@ -67,6 +73,12 @@ public class AnniversaryService {
         }
 
         validateAnniversaryType(requestDTO.getType());
+
+        LocalDate requestDate = requestDTO.getDate();
+        LocalDate currentDate = LocalDate.now(ZoneId.of("UTC"));
+        if (requestDate.isAfter(currentDate)) {
+            throw new IllegalArgumentException("Date cannot be in the future");
+        }
 
         ZonedDateTime zonedDateTime = requestDTO.getDate().atStartOfDay(ZoneId.of("UTC"));
         Timestamp timestamp = Timestamp.from(zonedDateTime.toInstant());
@@ -97,54 +109,55 @@ public class AnniversaryService {
 
 
     public List<Map<String, Integer>> calculateDDay(Anniversary anniversary) {
-            List<Map<String, Integer>> dDayList = new ArrayList<>();
-            ZoneId koreaZoneId = ZoneId.of("Asia/Seoul");
-            LocalDate today = LocalDate.now(koreaZoneId);
-            LocalDateTime anniversaryDateTime = anniversary.getAnniversaryDate().toLocalDateTime();
-            LocalDate anniversaryDate = anniversaryDateTime.toLocalDate(); //기념일의 날짜 부분만 추출
-            long yearsDifference = ChronoUnit.YEARS.between(anniversaryDate, today); //기념일 날짜와 오늘 날짜 사이의 년 차이를 계산
+        List<Map<String, Integer>> dDayList = new ArrayList<>();
+        LocalDate today = LocalDate.now();
+        LocalDateTime anniversaryDateTime = anniversary.getAnniversaryDate().toLocalDateTime();
+        LocalDate anniversaryDate = anniversaryDateTime.toLocalDate();
 
-            if (anniversary.getType() == AnniversaryType.연인) {
-                int daysPassed = (int) ChronoUnit.DAYS.between(anniversaryDate, today); //기념일 이후 오늘까지 경과된 일 수를 계산
-                int nextDay = ((daysPassed / 100) + 1) * 100;
+        Map<String, Integer> closestDDay = null;
+        int minDays = Integer.MAX_VALUE;
 
-                for (int i = 0; i < 2; i++) {
-                    LocalDate hundredDays = anniversaryDate.plusDays(nextDay + i * 100);
-                    if (!hundredDays.isBefore(today)) {
-                        Map<String, Integer> dDay = new HashMap<>();
-                        dDay.put((nextDay + i * 100) + "days", (int) ChronoUnit.DAYS.between(today, hundredDays) - 1);
-                        dDayList.add(dDay);
+        if (anniversary.getType() == AnniversaryType.연인) {
+            int daysPassed = (int) ChronoUnit.DAYS.between(anniversaryDate, today);
+            int nextDay = ((daysPassed / 100) + 1) * 100;
+
+            for (int i = 0; i < 1; i++) {  // Only find the next closest 100-day anniversary
+                LocalDate hundredDays = anniversaryDate.plusDays(nextDay + i * 100);
+                if (!hundredDays.isBefore(today)) {
+                    int daysToHundredDays = (int) ChronoUnit.DAYS.between(today, hundredDays) - 1;
+                    if (daysToHundredDays < minDays) {
+                        minDays = daysToHundredDays;
+                        closestDDay = new HashMap<>();
+                        closestDDay.put((nextDay + i * 100) + "days", daysToHundredDays);
                     }
-                }
-            }
-
-            boolean isTodayAnniversary = false;
-            for (int i = 1; i <= yearsDifference + 1; i++) {
-                LocalDate yearAnniversary = anniversaryDate.plusYears(i);
-                int daysBetween = (int) ChronoUnit.DAYS.between(today, yearAnniversary);
-                if (daysBetween == 0) {
-                    Map<String, Integer> dDay = new HashMap<>();
-                    dDay.put("year", daysBetween);
-                    dDayList.add(dDay);
-                    isTodayAnniversary = true;
                     break;
                 }
             }
-
-            if (!isTodayAnniversary) {
-                for (int i = 1; i <= yearsDifference + 1; i++) {
-                    LocalDate yearAnniversary = anniversaryDate.plusYears(i);
-                    if (!yearAnniversary.isBefore(today)) {
-                        Map<String, Integer> dDay = new HashMap<>();
-                        dDay.put("year", (int) ChronoUnit.DAYS.between(today, yearAnniversary));
-                        dDayList.add(dDay);
-                        break;
-                    }
-                }
-            }
-
-            return dDayList;
         }
+
+        long yearsDifference = ChronoUnit.YEARS.between(anniversaryDate, today);
+        for (int i = 1; i <= yearsDifference + 1; i++) {
+            LocalDate yearAnniversary = anniversaryDate.plusYears(i);
+            if (!yearAnniversary.isBefore(today)) {
+                int daysToYearAnniversary = (int) ChronoUnit.DAYS.between(today, yearAnniversary);
+                if (daysToYearAnniversary < minDays) {
+                    minDays = daysToYearAnniversary;
+                    closestDDay = new HashMap<>();
+                    closestDDay.put("year", daysToYearAnniversary);
+                }
+                break;
+            }
+        }
+
+        if (closestDDay != null) {
+            dDayList.add(closestDDay);
+        }
+
+
+        return dDayList;
+    }
+
+
 
     public List<AnniversaryResponseDTO> getDDayZeroAnniversaries(List<Anniversary> anniversaries) {
         List<AnniversaryResponseDTO> dDayZeroList = new ArrayList<>();

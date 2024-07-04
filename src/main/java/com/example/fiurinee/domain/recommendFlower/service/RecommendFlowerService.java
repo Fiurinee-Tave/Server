@@ -28,4 +28,9 @@ public class RecommendFlowerService {
         return recommendFlower;
 
     }
+
+    @Transactional
+    public void editPrefer(RecommendFlower recommendFlower, Boolean value){
+        recommendFlower.editPrefer(value);
+    }
 }

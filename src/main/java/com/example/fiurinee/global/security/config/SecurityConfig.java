@@ -71,7 +71,7 @@ public class SecurityConfig {
                         .requestMatchers("/oauth2/login", "/login/oauth2/code/**", "/oauth2/authorization/**","/login/oauth2/code/google","/member/*/refresh","/model/test",
                                 "/swagger-ui/index.html", "/swagger-ui/**", "/v3/api-docs/**","/swagger-resources/**", "/v3/api-docs").permitAll()
                         //비회원 전용 api
-                        .requestMatchers("/main/today","/main/season","model/ment").permitAll()
+                        .requestMatchers("/main/today","/main/season","/model/ment","/model/*/non").permitAll()
                         .anyRequest().authenticated());
 
         http.addFilterBefore(jwtVerifyFilter(), UsernamePasswordAuthenticationFilter.class);
