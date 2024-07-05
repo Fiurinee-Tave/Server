@@ -34,6 +34,7 @@ public class PrincipalDetail implements UserDetails, OAuth2User {
         info.put("name", memberDto.name());
         info.put("socialId", memberDto.socialId());
         info.put("role", memberDto.role().getValue());
+        info.put("phoneNumber", memberDto.phoneNumber());
         return info;
     }
 

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>D-Day Notification</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Sunflower:wght@300&display=swap');
+        body {
+            font-family: 'Sunflower', sans-serif;
+        }
+    </style>
+</head>
+<body style="font-family: 'Sunflower', sans-serif; background-color: #f8f8f8; color: #333; margin: 0; padding: 0;">
+<div style="width: 80%; max-width: 600px; margin: 50px auto; background-color: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); padding: 20px; border-radius: 10px;">
+    <div style="background-color: #f9ecec; text-align: center; padding: 20px; border-radius: 10px 10px 0 0;">
+        <h1 style="color: #db7093; margin: 0;">[Fiurinee] 기념일 알림</h1>
+    </div>
+    <div style="padding: 20px;">
+        <h2 style="color: #333;">안녕하세요.</h2>
+        <h2 style="color: #333;">소중한 사람들에게 선물할 꽃을 추천해주는 플랫폼 Fiurinee입니다.</h2>
+        <p style="font-size: 1.2em; line-height: 1.5;" th:text="'안녕하세요, ' + ${name} + '님!'"></p>
+        <p style="font-size: 1.2em; line-height: 1.5;" th:text="'오늘은 ' + ${anniversaryName} + ' 기념일 3일전입니다. 곧 다가올 기념일을 준비하세요!!'"></p>
+        <p style="font-size: 1.2em; line-height: 1.5;">기념일에 꽃을 추천 받아 보세요!</p>
+    </div>
+    <div style="text-align: center; padding: 10px; background-color: #f9ecec; border-radius: 0 0 10px 10px;">
+        <p style="margin: 0; color: #666;">Fiurinee</p>
+    </div>
+</div>
+</body>
+</html>

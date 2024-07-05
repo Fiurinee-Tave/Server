@@ -17,6 +17,9 @@ services:
       JWT_SECRET_KEY: ${JWT_SECRET_KEY}
       SMS_API_KEY: ${SMS_API_KEY}
       SMS_SECRET_KEY: ${SMS_SECRET_KEY}
+#       MAIL_USERNAME : ${MAIL_USERNAME}
+#       MAIL_PASSWORD : ${MAIL_PASSWORD}
+
       hibernate_ddl_auto: update
       REDIS_HOST: redis
     depends_on:

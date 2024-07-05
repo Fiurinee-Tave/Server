@@ -41,7 +41,15 @@ public class CommonLoginSuccessHandler implements AuthenticationSuccessHandler {
         // principal에서 로그인하는 유저의 이메일을 기반으로 refresh 토큰을 redis에 저장
         redisUtil.set(principal.getMemberDto().email(),refreshToken,60*24);
 
-        String redirectUri = "http://localhost:3000/auth";
+        String redirectUri = null;
+
+        if(principal.getMemberDto().phoneNumber() == null) {
+            redirectUri = "http://localhost:3000/phone";
+        }
+        else{
+            redirectUri = "http://localhost:3000/auth";
+        }
+
         Long memberId = principal.getMemberDto().id();
 
         String redirectUrl = String.format("%s?member_id=%d&access_token=%s&refresh_token=%s", redirectUri, memberId, accessToken, refreshToken);
