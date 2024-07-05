@@ -76,3 +76,7 @@ jwt:
   secret-key: ${JWT_SECRET_KEY}
 
 
+coolsms:
+  apiKey: ${SMS_API_KEY}
+  secretkey: ${SMS_SECRET_KEY}
+

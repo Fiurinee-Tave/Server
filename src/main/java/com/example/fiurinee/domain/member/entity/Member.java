@@ -37,6 +37,8 @@ public class Member {
 
     private boolean alarm;
 
+    private String phoneNumber;
+
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     @OrderBy("preferOrder ASC")
     private List<PreferList> preferLists;
@@ -63,6 +65,7 @@ public class Member {
         this.kakaoAccessToken = kakaoAccessToken;
         this.profileImage = profileImage;
         this.alarm = alarm;
+        this.phoneNumber = null;
     }
 
     public static Member createMember(String email, String name, String socialId, Role role, String kakaoAccessToken, int profileImage, boolean alarm) {
@@ -76,4 +79,9 @@ public class Member {
     public void updateProfileImage(int profileImage) {
         this.profileImage = profileImage;
     }
+
+    public void updatePhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
 }

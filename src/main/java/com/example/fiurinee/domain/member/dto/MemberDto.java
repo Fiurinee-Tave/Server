@@ -7,6 +7,7 @@ public record MemberDto(
         String email,
         String name,
         String socialId,
-        Role role
+        Role role,
+        String phoneNumber
 ) {
 }
