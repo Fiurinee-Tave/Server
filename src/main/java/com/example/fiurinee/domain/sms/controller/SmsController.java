@@ -52,5 +52,5 @@ public class SmsController implements SmsApi {
 //        AnniversaryRequestDTO anniversaryRequestDTO = new AnniversaryRequestDTO("이준범 생일", LocalDate.now(), "생일");
 //        Anniversary anniversary = anniversaryService.addAnniversary(1L, anniversaryRequestDTO);
 //        smsService.sendSMS(byId,anniversary);
-//    }
+//    }//
 }
