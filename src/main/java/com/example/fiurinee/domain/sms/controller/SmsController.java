@@ -30,15 +30,17 @@ public class SmsController implements SmsApi {
 
     @PostMapping("/send")
     public void SendSms(@RequestBody SmsDto sms){
-        smsService.certificateSMS(sms.getPhoneNumber());
+        smsService.certificateSMS(sms.getPhoneNumber().replace("-",""));
     }
 
     @PostMapping("/prove/{id}")
     public ResponseEntity<?> certificateSms(@RequestBody CertificateDto dto, @PathVariable("id") Long id){
-        Object o = redisUtil.get(dto.getPhoneNumber());
+        String phoneNumber = dto.getPhoneNumber().replace("-", "");
+
+        Object o = redisUtil.get(phoneNumber);
 
         if(o.toString().equals(dto.getCertificateNum())){
-            memberService.updatePhoneNumber(id,dto.getPhoneNumber());
+            memberService.updatePhoneNumber(id,phoneNumber);
             return ResponseEntity.status(200).build();
         }
         else{
