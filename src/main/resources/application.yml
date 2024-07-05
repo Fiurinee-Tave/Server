@@ -41,9 +41,24 @@ spring:
               - profile_nickname
               - account_email
 
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: wlgusqor12@gmail.com
+    password: tbyiilhblgupacvg
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
 logging.level:
   org.hibernate.SQL: debug
   org.hibernate.type: trace
+  org.springframework.mail: DEBUG
+  com.sun.mail.smtp: DEBUG
+
 
 cloud:
   aws:
@@ -59,3 +74,5 @@ cloud:
 
 jwt:
   secret-key: ${JWT_SECRET_KEY}
+
+

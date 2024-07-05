@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -35,6 +37,10 @@ public class MemberService {
     public MemberResponseDTO getMemberDtoById(Long id) {
         Member member = memberRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid member ID"));
         return MemberResponseDTO.of(member);
+    }
+
+    public List<Member> findAll() {
+        return memberRepository.findAll();
     }
 
 
