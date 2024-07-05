@@ -1,6 +1,7 @@
 package com.example.fiurinee.domain.anniversary.dto;
 
 import com.example.fiurinee.domain.anniversary.entity.Anniversary;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -18,13 +19,18 @@ public class AnniversaryResponseDTO {
     private String name;
     private String anniversaryDate;
     private String type;
+
+    @JsonProperty("dDays")
     private List<Map<String, Integer>> dDays;
 
     public static AnniversaryResponseDTO of(Anniversary anniversary, List<Map<String, Integer>> dDays) {
+        String fullDate = anniversary.getAnniversaryDate().toString();
+        String formattedDate = fullDate.substring(0, 10); // "yyyy-MM-dd" 형식으로 자르기
+
         return AnniversaryResponseDTO.builder()
                 .id(anniversary.getId())
                 .name(anniversary.getName())
-                .anniversaryDate(anniversary.getAnniversaryDate().toString())
+                .anniversaryDate(formattedDate)
                 .type(anniversary.getType().name())
                 .dDays(dDays)
                 .build();

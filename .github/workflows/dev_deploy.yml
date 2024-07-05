@@ -108,6 +108,8 @@ jobs:
             echo "KAKAO_CLIENT_ID=${{ secrets.KAKAO_CLIENT_ID }}" >> ~/deploy/.env
             echo "KAKAO_CLIENT_SECRET=${{ secrets.KAKAO_CLIENT_SECRET }}" >> ~/deploy/.env
             echo "JWT_SECRET_KEY=${{ secrets.JWT_SECRET_KEY }}" >> ~/deploy/.env
+            echo "MAIL_USERNAME=${{ secrets.MAIL_USERNAME }}" >> ~/deploy/.env
+            echo "MAIL_PASSWORD=${{ secrets.MAIL_PASSWORD }}" >> ~/deploy/.env
             sudo docker-compose -f ~/deploy/docker-compose.yml pull
             sudo docker-compose -f ~/deploy/docker-compose.yml up -d
             sudo docker image prune -f

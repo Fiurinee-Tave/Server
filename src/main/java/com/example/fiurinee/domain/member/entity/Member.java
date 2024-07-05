@@ -7,15 +7,13 @@ import com.example.fiurinee.domain.recommendComment.entity.RecommendComment;
 import com.example.fiurinee.domain.recommendFlower.entity.RecommendFlower;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.net.URL;
 import java.util.List;
 
 @Getter
+@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "member")

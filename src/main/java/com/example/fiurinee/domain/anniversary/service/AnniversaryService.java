@@ -5,8 +5,10 @@ import com.example.fiurinee.domain.anniversary.dto.AnniversaryResponseDTO;
 import com.example.fiurinee.domain.anniversary.entity.Anniversary;
 import com.example.fiurinee.domain.anniversary.entity.AnniversaryType;
 import com.example.fiurinee.domain.anniversary.repository.AnniversaryRepository;
+import com.example.fiurinee.domain.mail.MailService;
 import com.example.fiurinee.domain.member.entity.Member;
 import com.example.fiurinee.domain.member.repository.MemberRepository;
+import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +32,9 @@ public class AnniversaryService {
     @Autowired
     private MemberRepository memberRepository;
 
+    @Autowired
+    private MailService mailService;
+
     public Anniversary addAnniversary(Long memberId, AnniversaryRequestDTO requestDTO) {
         Member member = memberRepository.findById(memberId).orElseThrow(() -> new IllegalArgumentException("Invalid member ID"));
 
@@ -38,6 +43,12 @@ public class AnniversaryService {
             anniversaryType = AnniversaryType.valueOf(requestDTO.getType());
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("Invalid anniversary type");
+        }
+
+        LocalDate requestDate = requestDTO.getDate();
+        LocalDate currentDate = LocalDate.now(ZoneId.of("UTC"));
+        if (requestDate.isAfter(currentDate)) {
+            throw new IllegalArgumentException("Date cannot be in the future");
         }
 
         ZonedDateTime zonedDateTime = requestDTO.getDate().atStartOfDay(ZoneId.of("UTC"));
@@ -62,6 +73,12 @@ public class AnniversaryService {
         }
 
         validateAnniversaryType(requestDTO.getType());
+
+        LocalDate requestDate = requestDTO.getDate();
+        LocalDate currentDate = LocalDate.now(ZoneId.of("UTC"));
+        if (requestDate.isAfter(currentDate)) {
+            throw new IllegalArgumentException("Date cannot be in the future");
+        }
 
         ZonedDateTime zonedDateTime = requestDTO.getDate().atStartOfDay(ZoneId.of("UTC"));
         Timestamp timestamp = Timestamp.from(zonedDateTime.toInstant());
@@ -96,49 +113,51 @@ public class AnniversaryService {
         LocalDate today = LocalDate.now();
         LocalDateTime anniversaryDateTime = anniversary.getAnniversaryDate().toLocalDateTime();
         LocalDate anniversaryDate = anniversaryDateTime.toLocalDate();
-        long yearsDifference = ChronoUnit.YEARS.between(anniversaryDate, today);
+
+        Map<String, Integer> closestDDay = null;
+        int minDays = Integer.MAX_VALUE;
 
         if (anniversary.getType() == AnniversaryType.연인) {
             int daysPassed = (int) ChronoUnit.DAYS.between(anniversaryDate, today);
             int nextDay = ((daysPassed / 100) + 1) * 100;
 
-            for (int i = 0; i < 2; i++) {
+            for (int i = 0; i < 1; i++) {  // Only find the next closest 100-day anniversary
                 LocalDate hundredDays = anniversaryDate.plusDays(nextDay + i * 100);
                 if (!hundredDays.isBefore(today)) {
-                    Map<String, Integer> dDay = new HashMap<>();
-                    dDay.put((nextDay + i * 100) + "days", (int) ChronoUnit.DAYS.between(today, hundredDays) - 1);
-                    dDayList.add(dDay);
-                }
-            }
-        }
-
-        boolean isTodayAnniversary = false;
-        for (int i = 1; i <= yearsDifference + 1; i++) {
-            LocalDate yearAnniversary = anniversaryDate.plusYears(i);
-            int daysBetween = (int) ChronoUnit.DAYS.between(today, yearAnniversary);
-            if (daysBetween == 0) {
-                Map<String, Integer> dDay = new HashMap<>();
-                dDay.put("year", daysBetween);
-                dDayList.add(dDay);
-                isTodayAnniversary = true;
-                break;
-            }
-        }
-
-        if (!isTodayAnniversary) {
-            for (int i = 1; i <= yearsDifference + 1; i++) {
-                LocalDate yearAnniversary = anniversaryDate.plusYears(i);
-                if (!yearAnniversary.isBefore(today)) {
-                    Map<String, Integer> dDay = new HashMap<>();
-                    dDay.put("year", (int) ChronoUnit.DAYS.between(today, yearAnniversary));
-                    dDayList.add(dDay);
+                    int daysToHundredDays = (int) ChronoUnit.DAYS.between(today, hundredDays) - 1;
+                    if (daysToHundredDays < minDays) {
+                        minDays = daysToHundredDays;
+                        closestDDay = new HashMap<>();
+                        closestDDay.put((nextDay + i * 100) + "days", daysToHundredDays);
+                    }
                     break;
                 }
             }
         }
 
+        long yearsDifference = ChronoUnit.YEARS.between(anniversaryDate, today);
+        for (int i = 1; i <= yearsDifference + 1; i++) {
+            LocalDate yearAnniversary = anniversaryDate.plusYears(i);
+            if (!yearAnniversary.isBefore(today)) {
+                int daysToYearAnniversary = (int) ChronoUnit.DAYS.between(today, yearAnniversary);
+                if (daysToYearAnniversary < minDays) {
+                    minDays = daysToYearAnniversary;
+                    closestDDay = new HashMap<>();
+                    closestDDay.put("year", daysToYearAnniversary);
+                }
+                break;
+            }
+        }
+
+        if (closestDDay != null) {
+            dDayList.add(closestDDay);
+        }
+
+
         return dDayList;
     }
+
+
 
     public List<AnniversaryResponseDTO> getDDayZeroAnniversaries(List<Anniversary> anniversaries) {
         List<AnniversaryResponseDTO> dDayZeroList = new ArrayList<>();

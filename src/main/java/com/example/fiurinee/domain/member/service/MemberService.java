@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -37,10 +39,15 @@ public class MemberService {
         return MemberResponseDTO.of(member);
     }
 
+
     @Transactional
     public void updatePhoneNumber(Long id, String phoneNumber){
         Member byId = this.findById(id);
         byId.updatePhoneNumber(phoneNumber);
+
+    public List<Member> findAll() {
+        return memberRepository.findAll();
+
     }
 
 

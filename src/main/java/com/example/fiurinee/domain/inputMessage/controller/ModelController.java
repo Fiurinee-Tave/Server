@@ -33,21 +33,21 @@ public class ModelController implements ModelApi {
         String url = "http://localhost:8080/model/test";
 
         int value = LocalDateTime.now().getMonth().getValue();
-        System.out.println("value = " + value);
 
         List<ModelMentResponseDto> re  = CallApiService.mentApi(url, new MentDto(ment, value));
-        System.out.println("re.get(0).getName() = " + re.get(0).getName());
-        System.out.println("re.get(0).getFlowerLanguage() = " + re.get(0).getFlowerLanguage());
 
         Flower byName0 = flowerService.findByNameAndFlowerLanguage(re.get(0).getName(),re.get(0).getFlowerLanguage());
         Flower byName1 = flowerService.findByNameAndFlowerLanguage(re.get(1).getName(),re.get(1).getFlowerLanguage());
+        Flower byName2 = flowerService.findByNameAndFlowerLanguage(re.get(2).getName(),re.get(2).getFlowerLanguage());
 
         List<ResponseMentDto> re2 = new ArrayList<>();
         ResponseMentDto responseMentDto0 = new ResponseMentDto(byName0);
         ResponseMentDto responseMentDto1 = new ResponseMentDto(byName1);
+        ResponseMentDto responseMentDto2 = new ResponseMentDto(byName2);
 
         re2.add(responseMentDto0);
         re2.add(responseMentDto1);
+        re2.add(responseMentDto2);
 
 
         return ResponseEntity.ok(re2);
