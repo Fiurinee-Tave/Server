@@ -41,14 +41,15 @@ public class MemberService {
 
 
     @Transactional
-    public void updatePhoneNumber(Long id, String phoneNumber){
+    public void updatePhoneNumber(Long id, String phoneNumber) {
         Member byId = this.findById(id);
         byId.updatePhoneNumber(phoneNumber);
+    }
 
     public List<Member> findAll() {
         return memberRepository.findAll();
 
     }
 
-
 }
+
