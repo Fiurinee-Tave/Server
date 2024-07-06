@@ -31,7 +31,9 @@ public class JwtVerifyFilter extends OncePerRequestFilter {
             //비회원 전용 api
             "/main/today","/main/season","/model/ment","/model/*/non",
             //sms api
-            "/sms/prove/*","/sms/send"};
+            "/sms/prove/*","/sms/send",
+            //ALB
+            "/"};
     private final RedisUtil redisUtil;
 
 

@@ -74,6 +74,8 @@ public class SecurityConfig {
                         .requestMatchers("/main/today","/main/season","/model/ment","/model/*/non").permitAll()
                         //sms api
                         .requestMatchers("/sms/prove/*","/sms/send").permitAll()
+                        //ALB
+                        .requestMatchers("/").permitAll()
                         .anyRequest().authenticated());
 
         http.addFilterBefore(jwtVerifyFilter(), UsernamePasswordAuthenticationFilter.class);
