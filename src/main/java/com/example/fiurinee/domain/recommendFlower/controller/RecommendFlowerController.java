@@ -87,26 +87,68 @@ public class RecommendFlowerController implements RecommendFlowerApi {
 
         return ResponseEntity.ok(re);
     }
+
+    @GetMapping("/")
+    public ResponseEntity<?> healthyCheck(){
+        return ResponseEntity.ok().build();
+    }
 //-----------------------------------------------------------------------------------------------------------------
 //    @GetMapping("/save/test")
 //    public RecommendFlower dd(){
 //        RecommendFlower build = RecommendFlower.builder()
 //                .flower(flowerService.findByNameAndFlowerLanguage("토마토", "완성된 아름다움"))
 //                .prefer(true)
-//                .member(memberService.findById(1L))
+//                .member(memberService.findById(7L))
 //                .build();
 //
+//
+//        recommendFlowerService.saveRecommendFlower(build);
+//
+//        RecommendFlower build1 = RecommendFlower.builder()
+//                .flower(flowerService.findByNameAndFlowerLanguage("나도풍란", "인내"))
+//                .prefer(true)
+//                .member(memberService.findById(7L))
+//                .build();
+//
+//
+//        recommendFlowerService.saveRecommendFlower(build1);
+//
+//        RecommendFlower build2 = RecommendFlower.builder()
+//                .flower(flowerService.findByNameAndFlowerLanguage("군자란", "고귀"))
+//                .prefer(true)
+//                .member(memberService.findById(7L))
+//                .build();
+//
+//        recommendFlowerService.saveRecommendFlower(build2);
+//
+//        return memberService.findById(7L).getRecommendFlowers().get(0);
+//    }
+//
+//    @GetMapping("/test/test")
+//    public void pp(){
+//
 //        RecommendComment comment = RecommendComment.builder()
-//                .content("이것은 추천 멘트")
-//                .member(memberService.findById(1L))
+//                .content("이것은 추천 멘트1")
+//                .member(memberService.findById(7L))
 //                .prefer(true)
 //                .build();
 //
 //        recommendCommentService.saveRecommendComment(comment);
 //
+//        RecommendComment comment1 = RecommendComment.builder()
+//                .content("이것은 추천 멘트2")
+//                .member(memberService.findById(7L))
+//                .prefer(true)
+//                .build();
 //
+//        recommendCommentService.saveRecommendComment(comment1);
 //
-//        recommendFlowerService.saveRecommendFlower(build);
-//        return memberService.findById(1L).getRecommendFlowers().get(0);
+//        RecommendComment comment2 = RecommendComment.builder()
+//                .content("이것은 추천 멘트3")
+//                .member(memberService.findById(7L))
+//                .prefer(true)
+//                .build();
+//
+//        recommendCommentService.saveRecommendComment(comment2);
 //    }
 }
