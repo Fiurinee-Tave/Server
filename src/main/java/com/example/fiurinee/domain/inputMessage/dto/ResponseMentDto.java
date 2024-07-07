@@ -19,7 +19,7 @@ public class ResponseMentDto{
     public ResponseMentDto(Flower flower) {
         this.id = flower.getFlowerId();
         this.recommendFlower = flower.getName();
-        this.period = flower.getPeriod().toString();
+        this.period = String.format("%02d", flower.getPeriod() / 100);
         this.explain = flower.getExplain();
         this.flower_language = flower.getFlowerLanguage();
         this.image = flower.getImage();

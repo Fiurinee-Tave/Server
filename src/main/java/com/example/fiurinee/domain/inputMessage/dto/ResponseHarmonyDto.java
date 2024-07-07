@@ -19,7 +19,7 @@ public class ResponseHarmonyDto{
     public ResponseHarmonyDto(Flower flower) {
         this.id = flower.getFlowerId();
         this.harmonyFlower = flower.getName();
-        this.period = flower.getPeriod().toString();
+        this.period = String.format("%02d", flower.getPeriod() / 100);
         this.explain = flower.getExplain();
         this.flower_language = flower.getFlowerLanguage();
         this.image = flower.getImage();

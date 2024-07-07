@@ -50,13 +50,7 @@ public class RecommendFlowerDto {
         RecommendFlowerDto recommendFlowerDto = new RecommendFlowerDto();
         recommendFlowerDto.order = order;
         recommendFlowerDto.recommendFlower = flower.getName();
-        if(flower.getPeriod() < 1000){
-            Long p = flower.getPeriod() / 10;
-        }else{
-            Long p = flower.getPeriod() / 100;
-        }
-
-        recommendFlowerDto.period = flower.getPeriod().toString();
+        recommendFlowerDto.period = String.format("%02d", flower.getPeriod() / 100);
         recommendFlowerDto.flower_language = flower.getFlowerLanguage();
         recommendFlowerDto.explain = flower.getExplain();
         recommendFlowerDto.image = flower.getImage();
