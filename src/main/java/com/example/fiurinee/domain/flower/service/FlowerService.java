@@ -18,9 +18,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -106,11 +104,46 @@ public class FlowerService {
             return List.of();
         }
 
-        Random random = new Random();
-        List<Flower> randomFlowers = flowers.stream()
-                .skip(random.nextInt(flowers.size() - 5 + 1)) // random skip
-                .limit(5)
+        // '카네이션'을 포함한 꽃 필터링
+        List<Flower> carnationFlowers = flowers.stream()
+                .filter(flower -> flower.getName().contains("카네이션"))
                 .collect(Collectors.toList());
+
+        // '장미'를 포함한 꽃 필터링
+        List<Flower> roseFlowers = flowers.stream()
+                .filter(flower -> flower.getName().contains("장미"))
+                .collect(Collectors.toList());
+
+        // '카네이션' 또는 '장미'를 포함하지 않은 나머지 꽃
+        List<Flower> otherFlowers = flowers.stream()
+                .filter(flower -> !flower.getName().contains("카네이션") && !flower.getName().contains("장미"))
+                .collect(Collectors.toList());
+
+        Random random = new Random();
+        List<Flower> randomFlowers = new ArrayList<>();
+
+        // 카네이션 중 하나를 무작위로 선택 (존재하는 경우)
+        if (!carnationFlowers.isEmpty()) {
+            randomFlowers.add(carnationFlowers.get(random.nextInt(carnationFlowers.size())));
+        }
+
+        // 장미 중 하나를 무작위로 선택 (존재하는 경우)
+        if (!roseFlowers.isEmpty()) {
+            randomFlowers.add(roseFlowers.get(random.nextInt(roseFlowers.size())));
+        }
+
+        // 나머지 꽃들 중에서 무작위로 선택하여 5개가 되도록 채움
+        int remainingCount = 5 - randomFlowers.size();
+        if (remainingCount > 0) {
+            List<Flower> selectedOtherFlowers = otherFlowers.stream()
+                    .skip(random.nextInt(otherFlowers.size() - remainingCount + 1)) // random skip
+                    .limit(remainingCount)
+                    .collect(Collectors.toList());
+            randomFlowers.addAll(selectedOtherFlowers);
+        }
+
+        // 무작위로 선택된 꽃 리스트를 셔플
+        Collections.shuffle(randomFlowers);
 
         return randomFlowers.stream()
                 .map(FlowerResponseDTO::of)
