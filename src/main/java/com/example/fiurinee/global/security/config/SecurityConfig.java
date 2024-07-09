@@ -1,6 +1,5 @@
 package com.example.fiurinee.global.security.config;
 
-import com.example.fiurinee.domain.oauth2.repository.CookieOAuth2AuthorizationRequestRepository;
 import com.example.fiurinee.domain.oauth2.service.OAuth2UserService;
 import com.example.fiurinee.global.redis.utils.RedisUtil;
 import com.example.fiurinee.global.security.filter.JwtVerifyFilter;
@@ -59,11 +58,6 @@ public class SecurityConfig {
     @Bean
     public JwtVerifyFilter jwtVerifyFilter() {
         return new JwtVerifyFilter(redisUtil);
-    }
-
-    @Bean
-    public AuthorizationRequestRepository<OAuth2AuthorizationRequest> cookieAuthorizationRequestRepository() {
-        return new CookieOAuth2AuthorizationRequestRepository();
     }
 
     @Bean
