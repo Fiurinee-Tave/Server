@@ -60,10 +60,14 @@ public class OAuth2UserService extends DefaultOAuth2UserService {
         int defaultProfileImage = 11;
         boolean defaultAlarm = false;
         Member newMember = Member.createMember(email, name, socialId, Role.USER,kakaoAccessToken, defaultProfileImage, defaultAlarm);
+
+        Member save = memberRepository.save(newMember);
+
         LocalDate localDate = LocalDate.of(2024, 1, 1);
         AnniversaryRequestDTO anniversaryRequestDTO = new AnniversaryRequestDTO(name + "님 생일", localDate, "생일");
-        anniversaryService.addAnniversary(newMember.getId(), anniversaryRequestDTO);
-        return memberRepository.save(newMember);
+        anniversaryService.addAnniversary(save.getId(), anniversaryRequestDTO);
+
+        return save;
     }
 
     public void updateAccessToken(Member member, String accessToken){
