@@ -1,5 +1,6 @@
 package com.example.fiurinee.global.security.config;
 
+import com.example.fiurinee.domain.oauth2.repository.CookieOAuth2AuthorizationRequestRepository;
 import com.example.fiurinee.domain.oauth2.service.OAuth2UserService;
 import com.example.fiurinee.global.redis.utils.RedisUtil;
 import com.example.fiurinee.global.security.filter.JwtVerifyFilter;
@@ -61,6 +62,11 @@ public class SecurityConfig {
     }
 
     @Bean
+    public AuthorizationRequestRepository<OAuth2AuthorizationRequest> cookieAuthorizationRequestRepository() {
+        return new CookieOAuth2AuthorizationRequestRepository();
+    }
+
+    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.cors(httpSecurityCorsConfigurer -> httpSecurityCorsConfigurer.configurationSource(corsConfigurationSource()));
         http.csrf(AbstractHttpConfigurer::disable);
@@ -84,10 +90,17 @@ public class SecurityConfig {
 
         http.formLogin().disable();
 
-        http.oauth2Login()
-                .successHandler(commonLoginSuccessHandler())
-                .userInfoEndpoint(userInfoEndpointConfig ->
-                        userInfoEndpointConfig.userService(oAuth2UserService));
+        http.oauth2Login(oauth2Login ->
+                oauth2Login
+                        .authorizationEndpoint(authorizationEndpoint ->
+                                authorizationEndpoint
+                                        .authorizationRequestRepository(cookieAuthorizationRequestRepository())
+                        )
+                        .successHandler(commonLoginSuccessHandler())
+                        .userInfoEndpoint(userInfoEndpoint ->
+                                userInfoEndpoint.userService(oAuth2UserService)
+                        )
+        );
 
         return http.build();
     }
