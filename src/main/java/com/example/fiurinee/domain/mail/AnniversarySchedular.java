@@ -4,6 +4,7 @@ import com.example.fiurinee.domain.anniversary.entity.Anniversary;
 import com.example.fiurinee.domain.anniversary.service.AnniversaryService;
 import com.example.fiurinee.domain.member.entity.Member;
 import com.example.fiurinee.domain.member.service.MemberService;
+import com.example.fiurinee.domain.sms.service.SmsService;
 import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -19,11 +20,13 @@ public class AnniversarySchedular {
     private final AnniversaryService anniversaryService;
     private final MailService mailService;
     private final MemberService memberService;
+    private final SmsService smsService;
 
-    public AnniversarySchedular(AnniversaryService anniversaryService, MailService mailService, MemberService memberService) {
+    public AnniversarySchedular(AnniversaryService anniversaryService, MailService mailService, MemberService memberService,SmsService smsService) {
         this.anniversaryService = anniversaryService;
         this.mailService = mailService;
         this.memberService = memberService;
+        this.smsService = smsService;
     }
 
     @Scheduled(cron = "0 30 14 * * *", zone = "Asia/Seoul")
@@ -42,8 +45,10 @@ public class AnniversarySchedular {
                         try {
                             if (entry.getValue() == 0) {
                                 mailService.sendAnniversaryEmail(anniversary.getMember(), anniversary);
+                                smsService.sendSMS(anniversary.getMember(), anniversary);
                             } else if (entry.getValue() == 3) {
                                 mailService.sendPreAnniversaryEmail(anniversary.getMember(), anniversary);
+                                smsService.preSendSMS(anniversary.getMember(), anniversary);
                             }
                         } catch (MessagingException e) {
                             e.printStackTrace();
