@@ -30,7 +30,4 @@ public class FlowerController implements FlowerApi {
         return ResponseEntity.ok(flower);
     }
 
-
-
-
 }
