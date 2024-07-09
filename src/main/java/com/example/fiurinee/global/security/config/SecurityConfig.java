@@ -1,5 +1,6 @@
 package com.example.fiurinee.global.security.config;
 
+import com.example.fiurinee.domain.oauth2.repository.CookieOAuth2AuthorizationRequestRepository;
 import com.example.fiurinee.domain.oauth2.service.OAuth2UserService;
 import com.example.fiurinee.global.redis.utils.RedisUtil;
 import com.example.fiurinee.global.security.filter.JwtVerifyFilter;
@@ -13,6 +14,8 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.client.web.AuthorizationRequestRepository;
+import org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
@@ -56,6 +59,11 @@ public class SecurityConfig {
     @Bean
     public JwtVerifyFilter jwtVerifyFilter() {
         return new JwtVerifyFilter(redisUtil);
+    }
+
+    @Bean
+    public AuthorizationRequestRepository<OAuth2AuthorizationRequest> cookieAuthorizationRequestRepository() {
+        return new CookieOAuth2AuthorizationRequestRepository();
     }
 
     @Bean
