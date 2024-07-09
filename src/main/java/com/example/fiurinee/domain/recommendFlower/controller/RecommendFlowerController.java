@@ -88,7 +88,7 @@ public class RecommendFlowerController implements RecommendFlowerApi {
         return ResponseEntity.ok(re);
     }
 
-    @GetMapping("/")
+    @GetMapping("/check")
     public ResponseEntity<?> healthyCheck(){
         return ResponseEntity.ok().build();
     }

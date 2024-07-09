@@ -33,7 +33,7 @@ public class JwtVerifyFilter extends OncePerRequestFilter {
             //sms api
             "/sms/prove/*","/sms/send",
             //ALB
-            "/"};
+            "/member/check"};
     private final RedisUtil redisUtil;
 
 
