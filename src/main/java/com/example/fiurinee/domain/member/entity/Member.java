@@ -40,7 +40,6 @@ public class Member {
     private String phoneNumber;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    @OrderBy("preferOrder ASC")
     private List<PreferList> preferLists;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
