@@ -57,7 +57,7 @@ public class FlowerServiceTest {
                 .period(709L)
                 .flowerLanguage("꽃말")
                 .explain("꽃이 이뻐요")
-                .image(toURL("https://example.com/lily.jpg"))
+                .image(toURL("https://example.com/flower.jpg"))
                 .build();
 
         when(flowerRepository.findByPeriodMonth(709L, 709L)).thenReturn(Collections.singletonList(flower));
@@ -70,13 +70,13 @@ public class FlowerServiceTest {
 
     @Test
     void testFindByNameAndFlowerLanguage() {
-        String name = "Rose";
-        String flowerLanguage = "Love";
+        String name = "장미";
+        String flowerLanguage = "사랑";
         Flower flower = Flower.builder()
                 .name(name)
                 .period(601L)
                 .flowerLanguage(flowerLanguage)
-                .explain("A symbol of love")
+                .explain("꽃이 아름다워요!")
                 .image(toURL("https://example.com/rose.jpg"))
                 .build();
 
