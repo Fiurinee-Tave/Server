@@ -12,6 +12,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @Slf4j
@@ -32,9 +34,13 @@ public class PreferListController implements PreferListApi {
                 .build();
         preferListService.save(build);
 
-        RecommendFlower recommendFlower = byId.getRecommendFlowers().get(Math.toIntExact(order));
+        List<RecommendFlower> recommendFlowers = byId.getRecommendFlowers();
+
+        RecommendFlower recommendFlower = recommendFlowers.get(order.intValue());
 
         recommendFlowerService.editPrefer(recommendFlower,true);
+
+        memberService.updateRecommendFlower(byId,recommendFlowers);
 
         return true;
 
@@ -47,9 +53,13 @@ public class PreferListController implements PreferListApi {
 
         preferListService.delete(preferListService.findByMemberAndOrder(byId,order));
 
-        RecommendFlower recommendFlower = byId.getRecommendFlowers().get(Math.toIntExact(order));
+        List<RecommendFlower> recommendFlowers = byId.getRecommendFlowers();
+
+        RecommendFlower recommendFlower = recommendFlowers.get(order.intValue());
 
         recommendFlowerService.editPrefer(recommendFlower,false);
+
+        memberService.updateRecommendFlower(byId,recommendFlowers);
 
         return true;
     }

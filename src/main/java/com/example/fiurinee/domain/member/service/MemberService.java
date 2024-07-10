@@ -3,6 +3,7 @@ package com.example.fiurinee.domain.member.service;
 import com.example.fiurinee.domain.member.dto.MemberResponseDTO;
 import com.example.fiurinee.domain.member.entity.Member;
 import com.example.fiurinee.domain.member.repository.MemberRepository;
+import com.example.fiurinee.domain.recommendFlower.entity.RecommendFlower;
 import com.example.fiurinee.global.exception.CustomException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -49,6 +50,11 @@ public class MemberService {
     public List<Member> findAll() {
         return memberRepository.findAll();
 
+    }
+
+    @Transactional
+    public void updateRecommendFlower(Member member, List<RecommendFlower> nnew){
+        member.updaterecommendFlower(nnew);
     }
 
 }

@@ -69,4 +69,35 @@ public class RecommendFlowerDto {
 
         return recommendFlowerDto;
     }
+
+    public static RecommendFlowerDto preferOf(Long order, Member member){
+        List<RecommendFlower> recommendFlowers = member.getRecommendFlowers();
+        if(recommendFlowers.size() < order){
+            return null;
+        }
+        RecommendFlower recommendFlower = recommendFlowers.get(order.intValue());
+        Flower flower = recommendFlower.getFlower();
+
+        RecommendFlowerDto recommendFlowerDto = new RecommendFlowerDto();
+        recommendFlowerDto.order = (long) (order.intValue());
+        recommendFlowerDto.recommendFlower = flower.getName();
+        recommendFlowerDto.period = String.format("%02d", flower.getPeriod() / 100);
+        recommendFlowerDto.flower_language = flower.getFlowerLanguage();
+        recommendFlowerDto.explain = flower.getExplain();
+        recommendFlowerDto.image = flower.getImage();
+
+        List<InputMessage> inputMessages = member.getInputMessages();
+        InputMessage inputMessage = inputMessages.get(order.intValue());
+
+        recommendFlowerDto.inputMessage = inputMessage.getContent();
+        recommendFlowerDto.create_at = inputMessage.getCreateAt().toString().substring(0,10);
+
+        List<RecommendComment> recommendComments = member.getRecommendComments();
+        RecommendComment recommendComment = recommendComments.get(order.intValue());
+
+        recommendFlowerDto.recommendMessage = recommendComment.getContent();
+        recommendFlowerDto.prefer = recommendFlower.getPrefer();
+
+        return recommendFlowerDto;
+    }
 }

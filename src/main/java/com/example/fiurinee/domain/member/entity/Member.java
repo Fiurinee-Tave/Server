@@ -46,6 +46,7 @@ public class Member {
     private List<Anniversary> anniversaries;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    @OrderBy("createAt DESC") // createAt 필드를 기준으로 내림차순 정렬
     private List<RecommendFlower> recommendFlowers;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
@@ -81,6 +82,10 @@ public class Member {
 
     public void updatePhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public void updaterecommendFlower(List<RecommendFlower> nnew){
+        this.recommendFlowers = nnew;
     }
 
 }
