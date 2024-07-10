@@ -47,7 +47,7 @@ public class CommonLoginSuccessHandler implements AuthenticationSuccessHandler {
             redirectUri = "http://localhost:3000/phone";
         }
         else{
-            redirectUri = "https://fiurinee.site/auth";
+            redirectUri = "http://localhost:3000/auth";
         }
 
         Long memberId = principal.getMemberDto().id();
