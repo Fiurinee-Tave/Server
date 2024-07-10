@@ -47,7 +47,7 @@ public class HarmonyRecentDto {
             HarmonyRecentDto harmonyRecentDto = new HarmonyRecentDto();
             Flower flower = matchingFlowers.get(i).getFlower();
             harmonyRecentDto.harmonyFlower = flower.getName();
-            harmonyRecentDto.order = order;
+            harmonyRecentDto.order = (long) (recommendFlowers.size() - order.intValue());
             harmonyRecentDto.period = String.format("%02d", flower.getPeriod() / 100);
             harmonyRecentDto.explain = flower.getExplain();
             harmonyRecentDto.image = flower.getImage();

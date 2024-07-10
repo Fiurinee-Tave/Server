@@ -48,7 +48,7 @@ public class RecommendFlowerDto {
         Flower flower = recommendFlower.getFlower();
 
         RecommendFlowerDto recommendFlowerDto = new RecommendFlowerDto();
-        recommendFlowerDto.order = order;
+        recommendFlowerDto.order = (long) (recommendFlowers.size()-order.intValue());
         recommendFlowerDto.recommendFlower = flower.getName();
         recommendFlowerDto.period = String.format("%02d", flower.getPeriod() / 100);
         recommendFlowerDto.flower_language = flower.getFlowerLanguage();
@@ -56,13 +56,13 @@ public class RecommendFlowerDto {
         recommendFlowerDto.image = flower.getImage();
 
         List<InputMessage> inputMessages = member.getInputMessages();
-        InputMessage inputMessage = inputMessages.get(inputMessages.size() - order.intValue());
+        InputMessage inputMessage = inputMessages.get(recommendFlowers.size() - order.intValue());
 
         recommendFlowerDto.inputMessage = inputMessage.getContent();
         recommendFlowerDto.create_at = inputMessage.getCreateAt().toString().substring(0,10);
 
         List<RecommendComment> recommendComments = member.getRecommendComments();
-        RecommendComment recommendComment = recommendComments.get(recommendComments.size() - order.intValue());
+        RecommendComment recommendComment = recommendComments.get(recommendFlowers.size() - order.intValue());
 
         recommendFlowerDto.recommendMessage = recommendComment.getContent();
         recommendFlowerDto.prefer = recommendFlower.getPrefer();

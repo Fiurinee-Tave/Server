@@ -32,9 +32,7 @@ public class PreferListController implements PreferListApi {
                 .build();
         preferListService.save(build);
 
-        int size = byId.getRecommendFlowers().size();
-
-        RecommendFlower recommendFlower = byId.getRecommendFlowers().get(size - Math.toIntExact(order));
+        RecommendFlower recommendFlower = byId.getRecommendFlowers().get(Math.toIntExact(order));
 
         recommendFlowerService.editPrefer(recommendFlower,true);
 
@@ -49,9 +47,7 @@ public class PreferListController implements PreferListApi {
 
         preferListService.delete(preferListService.findByMemberAndOrder(byId,order));
 
-        int size = byId.getRecommendFlowers().size();
-
-        RecommendFlower recommendFlower = byId.getRecommendFlowers().get(size - Math.toIntExact(order));
+        RecommendFlower recommendFlower = byId.getRecommendFlowers().get(Math.toIntExact(order));
 
         recommendFlowerService.editPrefer(recommendFlower,false);
 
