@@ -7,13 +7,13 @@ import lombok.Setter;
 @Getter
 public class MentDto {
 
-    private String ment;
-    private int month;
+    private String user_input;
+    private int user_month;
 
     public MentDto(){}
 
     public MentDto(String ment, int month) {
-        this.ment = ment;
-        this.month = month;
+        this.user_input = ment;
+        this.user_month = month;
     }
 }
