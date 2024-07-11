@@ -30,7 +30,7 @@ public class ModelController implements ModelApi {
                                                      @RequestBody RequestMentDto mentDto){
         String ment = mentDto.ment();
         inputMessageService.saveInputMessage(id, ment);
-        String url = "http://localhost:8080/model/test";
+        String url = "http://3.106.186.161/api/recommend";
 
         int value = LocalDateTime.now().getMonth().getValue();
 
@@ -56,7 +56,7 @@ public class ModelController implements ModelApi {
 
     @PostMapping("/ment")
     public ResponseEntity<List<ResponseMentDto>> inputMentNotMember(@RequestBody String ment){
-        String url = "http://localhost:8080/model/test";
+        String url = "http://3.106.186.161/api/recommend";
 
         int value = LocalDateTime.now().getMonth().getValue();
 
@@ -106,21 +106,5 @@ public class ModelController implements ModelApi {
         re.add(responseHarmonyDto1);
 
         return ResponseEntity.ok(new ResponseHarmonyWitnMentDto("추천은 recommend, recommend는 영어로 추천, 내 너무 피곤하다,, 인생이란 뭘까",re));
-    }
-
-    @PostMapping("/test")
-    public List<ModelMentResponseDto> modelTest(@RequestBody MentDto mentDto) {
-        List<ModelMentResponseDto> re = new ArrayList<>();
-        ModelMentResponseDto modelMentResponseDto0 = new ModelMentResponseDto("토레니아", "가련한 욕망");
-        ModelMentResponseDto modelMentResponseDto1 = new ModelMentResponseDto("토마토", "완성된 아름다움");
-        ModelMentResponseDto modelMentResponseDto2 = new ModelMentResponseDto("겹 캄파눌라", "따뜻한 사람");
-
-
-        re.add(modelMentResponseDto0);
-        re.add(modelMentResponseDto1);
-        re.add(modelMentResponseDto2);
-
-        return re;
-
     }
 }
