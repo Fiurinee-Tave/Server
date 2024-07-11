@@ -78,7 +78,7 @@ public class RecommendFlowerController implements RecommendFlowerApi {
         List<RecommendFlowerDto> re = new ArrayList<>();
 
         for (PreferList preferList : preferLists) {
-            RecommendFlowerDto recommendFlowerDto = RecommendFlowerDto.of(preferList.getPreferOrder(), byId);
+            RecommendFlowerDto recommendFlowerDto = RecommendFlowerDto.preferOf(preferList.getPreferOrder(), byId);
             if(recommendFlowerDto == null){
             }else{
                 re.add(recommendFlowerDto);
@@ -94,61 +94,60 @@ public class RecommendFlowerController implements RecommendFlowerApi {
     }
 //-----------------------------------------------------------------------------------------------------------------
 //    @GetMapping("/save/test")
-//    public RecommendFlower dd(){
+//    public void dd(){
 //        RecommendFlower build = RecommendFlower.builder()
-//                .flower(flowerService.findByNameAndFlowerLanguage("토마토", "완성된 아름다움"))
-//                .prefer(true)
-//                .member(memberService.findById(7L))
+//                .flower(flowerService.findByNameAndFlowerLanguage("감국", "그윽한 향기"))
+//                .prefer(false)
+//                .member(memberService.findById(2L))
 //                .build();
 //
 //
 //        recommendFlowerService.saveRecommendFlower(build);
 //
-//        RecommendFlower build1 = RecommendFlower.builder()
-//                .flower(flowerService.findByNameAndFlowerLanguage("나도풍란", "인내"))
-//                .prefer(true)
-//                .member(memberService.findById(7L))
-//                .build();
+////        RecommendFlower build1 = RecommendFlower.builder()
+////                .flower(flowerService.findByNameAndFlowerLanguage("나도풍란", "인내"))
+////                .prefer(true)
+////                .member(memberService.findById(2L))
+////                .build();
+////
+////
+////        recommendFlowerService.saveRecommendFlower(build1);
+////
+////        RecommendFlower build2 = RecommendFlower.builder()
+////                .flower(flowerService.findByNameAndFlowerLanguage("군자란", "고귀"))
+////                .prefer(true)
+////                .member(memberService.findById(2L))
+////                .build();
+////
+////        recommendFlowerService.saveRecommendFlower(build2);
 //
-//
-//        recommendFlowerService.saveRecommendFlower(build1);
-//
-//        RecommendFlower build2 = RecommendFlower.builder()
-//                .flower(flowerService.findByNameAndFlowerLanguage("군자란", "고귀"))
-//                .prefer(true)
-//                .member(memberService.findById(7L))
-//                .build();
-//
-//        recommendFlowerService.saveRecommendFlower(build2);
-//
-//        return memberService.findById(7L).getRecommendFlowers().get(0);
 //    }
-//
+
 //    @GetMapping("/test/test")
 //    public void pp(){
 //
 //        RecommendComment comment = RecommendComment.builder()
-//                .content("이것은 추천 멘트1")
-//                .member(memberService.findById(7L))
-//                .prefer(true)
+//                .content("44444444")
+//                .member(memberService.findById(2L))
+//                .prefer(false)
 //                .build();
 //
 //        recommendCommentService.saveRecommendComment(comment);
 //
-//        RecommendComment comment1 = RecommendComment.builder()
-//                .content("이것은 추천 멘트2")
-//                .member(memberService.findById(7L))
-//                .prefer(true)
-//                .build();
-//
-//        recommendCommentService.saveRecommendComment(comment1);
-//
-//        RecommendComment comment2 = RecommendComment.builder()
-//                .content("이것은 추천 멘트3")
-//                .member(memberService.findById(7L))
-//                .prefer(true)
-//                .build();
-//
-//        recommendCommentService.saveRecommendComment(comment2);
+////        RecommendComment comment1 = RecommendComment.builder()
+////                .content("222222222222")
+////                .member(memberService.findById(2L))
+////                .prefer(false)
+////                .build();
+////
+////        recommendCommentService.saveRecommendComment(comment1);
+////
+////        RecommendComment comment2 = RecommendComment.builder()
+////                .content("333333333333")
+////                .member(memberService.findById(2L))
+////                .prefer(false)
+////                .build();
+////
+////        recommendCommentService.saveRecommendComment(comment2);
 //    }
 }

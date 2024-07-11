@@ -47,7 +47,39 @@ public class HarmonyRecentDto {
             HarmonyRecentDto harmonyRecentDto = new HarmonyRecentDto();
             Flower flower = matchingFlowers.get(i).getFlower();
             harmonyRecentDto.harmonyFlower = flower.getName();
-            harmonyRecentDto.order = order;
+            harmonyRecentDto.order = (long) (recommendFlowers.size() - order.intValue());
+            harmonyRecentDto.period = String.format("%02d", flower.getPeriod() / 100);
+            harmonyRecentDto.explain = flower.getExplain();
+            harmonyRecentDto.image = flower.getImage();
+            harmonyRecentDto.flower_language = flower.getFlowerLanguage();
+
+            dtoList.add(harmonyRecentDto);
+
+        }
+
+        return dtoList;
+
+
+    }
+
+    public static List<HarmonyRecentDto> preferOf(Long order, Member member){
+        List<RecommendFlower> recommendFlowers = member.getRecommendFlowers();
+        if(recommendFlowers.size() < order){
+            return null;
+        }
+        RecommendFlower recommendFlower = recommendFlowers.get(order.intValue());
+
+        List<MatchingFlower> matchingFlowers = recommendFlower.getMatchingFlowers();
+        if(matchingFlowers.size() < 2){
+            return null;
+        }
+
+        List<HarmonyRecentDto> dtoList= new ArrayList<>();
+        for(int i = 0 ;i<2;i++){
+            HarmonyRecentDto harmonyRecentDto = new HarmonyRecentDto();
+            Flower flower = matchingFlowers.get(i).getFlower();
+            harmonyRecentDto.harmonyFlower = flower.getName();
+            harmonyRecentDto.order = (long) (order.intValue());
             harmonyRecentDto.period = String.format("%02d", flower.getPeriod() / 100);
             harmonyRecentDto.explain = flower.getExplain();
             harmonyRecentDto.image = flower.getImage();

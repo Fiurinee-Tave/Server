@@ -6,6 +6,7 @@ import com.example.fiurinee.domain.member.entity.Member;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
@@ -27,6 +28,8 @@ public class RecommendFlower {
     private Flower flower;
 
     private Boolean prefer;
+
+    private Timestamp createAt;
 
     @OneToMany(mappedBy = "recommendFlower", cascade = CascadeType.ALL)
     private List<MatchingFlower> matchingFlowers;
