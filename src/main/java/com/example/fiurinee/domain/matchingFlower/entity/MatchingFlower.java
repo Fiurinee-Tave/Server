@@ -23,4 +23,7 @@ public class MatchingFlower {
     @JoinColumn(name = "flowerId")
     private Flower flower;
 
+    public static MatchingFlower createTestInstance() {
+        return new MatchingFlower();
+    }
 }
