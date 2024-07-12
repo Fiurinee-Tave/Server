@@ -2,6 +2,7 @@ package com.example.fiurinee.global.api.service;
 
 import com.example.fiurinee.domain.inputMessage.dto.MentDto;
 import com.example.fiurinee.domain.inputMessage.dto.ModelMentResponseDto;
+import com.example.fiurinee.domain.inputMessage.dto.RecommendationResponse;
 import com.example.fiurinee.domain.inputMessage.dto.ResponseMentDto;
 import com.example.fiurinee.domain.member.entity.Member;
 import com.example.fiurinee.domain.oauth2.dto.KakaoLogoutDto;
@@ -13,6 +14,7 @@ import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @Transactional
@@ -72,14 +74,15 @@ public class CallApiService {
 
         WebClient webClient = WebClient.builder().build();
 
-        return webClient
+        RecommendationResponse response = webClient
                 .post()
                 .uri(url)
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(mentDto)
                 .retrieve()
-                .bodyToMono(new ParameterizedTypeReference<List<ModelMentResponseDto>>() {})
+                .bodyToMono(RecommendationResponse.class)
                 .block();
+        return Objects.requireNonNull(response).getRecommendations();
 
     }
 }
