@@ -1,5 +1,7 @@
 package com.example.fiurinee.domain.recommendFlower.service;
 
+import com.example.fiurinee.domain.flower.entity.Flower;
+import com.example.fiurinee.domain.member.entity.Member;
 import com.example.fiurinee.domain.recommendFlower.entity.RecommendFlower;
 import com.example.fiurinee.domain.recommendFlower.repository.RecommendFlowerRepository;
 import com.example.fiurinee.global.exception.CustomException;
@@ -7,6 +9,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Service
 @Transactional(readOnly = true)
@@ -17,8 +22,16 @@ public class RecommendFlowerService {
     private final RecommendFlowerRepository recommendFlowerRepository;
 
     @Transactional
-    public void saveRecommendFlower(RecommendFlower recommendFlower){
-        recommendFlowerRepository.save(recommendFlower);
+    public RecommendFlower saveRecommendFlower(Member member, Flower flower){
+
+        RecommendFlower recommendFlower = RecommendFlower.builder()
+                .member(member)
+                .prefer(false)
+                .createAt(Timestamp.valueOf(LocalDateTime.now()))
+                .flower(flower)
+                .build();
+
+        return recommendFlowerRepository.save(recommendFlower);
     }
 
     public RecommendFlower findById(Long id){
