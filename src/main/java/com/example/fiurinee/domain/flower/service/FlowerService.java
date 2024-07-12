@@ -172,10 +172,13 @@ public class FlowerService {
         flowerLangauge = flowerLangauge.trim();
 
         log.info("Searching for flower with name: '{}' and flowerLanguage: '{}'", name, flowerLangauge);
-        Flower flower = flowerRepository.findByNameAndFlowerLanguage(name,flowerLangauge).orElseThrow(
-                () -> new CustomException("꽃 이름 또는 꽃말이 존재하지 않습니다."));
+        List<Flower> byNameAndFlowerLanguage = flowerRepository.findByNameAndFlowerLanguage(name, flowerLangauge);
 
-        return flower;
+        if(byNameAndFlowerLanguage.isEmpty()){
+            throw new CustomException("일치하는 꽃 이름과 꽃말이 존재하지 않습니다.");
+        }
+
+        return byNameAndFlowerLanguage.get(0);
     }
 
     public Flower findByName(String name){
