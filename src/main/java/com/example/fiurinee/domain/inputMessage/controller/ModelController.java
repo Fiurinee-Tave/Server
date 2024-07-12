@@ -42,7 +42,7 @@ public class ModelController implements ModelApi {
     public ResponseEntity<List<ResponseMentDto>> inputMent(@PathVariable("id") Long id,
                                                      @RequestBody RequestMentDto mentDto){
         String ment = mentDto.ment();
-        inputMessageService.saveInputMessage(id, ment);
+
         String url = "http://3.106.186.161/api/recommend";
 
         int value = LocalDateTime.now().getMonth().getValue();
@@ -98,6 +98,8 @@ public class ModelController implements ModelApi {
     public ResponseEntity<ResponseHarmonyWitnMentDto> selectFlower(@PathVariable ("memberId") Long memberId,
                                                    @PathVariable ("flowerId") Long flowerId,
                                                    @RequestBody String ment){
+
+        inputMessageService.saveInputMessage(memberId,ment);
 
         String url = "http://3.106.186.161/api/flower_color";
         Member byId = memberService.findById(memberId);
