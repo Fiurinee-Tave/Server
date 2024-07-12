@@ -177,4 +177,19 @@ public class FlowerService {
 
         return flower;
     }
+
+    public Flower findByName(String name){
+
+        name = name.trim();
+
+        return flowerRepository.findByName(name).get(0);
+
+    }
+
+    public Flower findById(Long id){
+        Flower flower = flowerRepository.findById(id).orElseThrow(
+                () -> new CustomException("id가 일치하는 꽃이 존재하지 않습니다."));
+
+        return flower;
+    }
 }

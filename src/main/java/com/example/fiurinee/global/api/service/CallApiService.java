@@ -1,9 +1,6 @@
 package com.example.fiurinee.global.api.service;
 
-import com.example.fiurinee.domain.inputMessage.dto.MentDto;
-import com.example.fiurinee.domain.inputMessage.dto.ModelMentResponseDto;
-import com.example.fiurinee.domain.inputMessage.dto.RecommendationResponse;
-import com.example.fiurinee.domain.inputMessage.dto.ResponseMentDto;
+import com.example.fiurinee.domain.inputMessage.dto.*;
 import com.example.fiurinee.domain.member.entity.Member;
 import com.example.fiurinee.domain.oauth2.dto.KakaoLogoutDto;
 import org.springframework.core.ParameterizedTypeReference;
@@ -83,6 +80,39 @@ public class CallApiService {
                 .bodyToMono(RecommendationResponse.class)
                 .block();
         return Objects.requireNonNull(response).getRecommendations();
+
+    }
+
+    public static List<FlowerColorDto> harmonyApi(String url, RequestHarmonyDto requestHarmonyDto) {
+
+        WebClient webClient = WebClient.builder().build();
+
+        FlowerColorListResponseDto response = webClient
+                .post()
+                .uri(url)
+                .contentType(MediaType.APPLICATION_JSON)
+                .bodyValue(requestHarmonyDto)
+                .retrieve()
+                .bodyToMono(FlowerColorListResponseDto.class)
+                .block();
+        return Objects.requireNonNull(response).getFlowerColorList();
+
+    }
+
+    public static ResponseGptDto gptApi(String url, RequestGptDto requestGptDto) {
+
+        WebClient webClient = WebClient.builder().build();
+
+        ResponseGptDto response = webClient
+                .post()
+                .uri(url)
+                .contentType(MediaType.APPLICATION_JSON)
+                .bodyValue(requestGptDto)
+                .retrieve()
+                .bodyToMono(ResponseGptDto.class)
+                .block();
+
+        return Objects.requireNonNull(response);
 
     }
 }

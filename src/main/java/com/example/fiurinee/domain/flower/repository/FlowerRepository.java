@@ -16,4 +16,6 @@ public interface FlowerRepository extends JpaRepository<Flower, Long> {
     List<Flower> findByPeriodMonth(@Param("startPeriod") Long startPeriod, @Param("endPeriod") Long endPeriod);
 
     Optional<Flower> findByNameAndFlowerLanguage(String name,String flowerLanguage);
+
+    List<Flower> findByName(String name);
 }
