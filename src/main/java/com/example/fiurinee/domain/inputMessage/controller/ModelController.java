@@ -68,7 +68,9 @@ public class ModelController implements ModelApi {
     }
 
     @PostMapping("/ment")
-    public ResponseEntity<List<ResponseMentDto>> inputMentNotMember(@RequestBody String ment){
+    public ResponseEntity<List<ResponseMentDto>> inputMentNotMember(@RequestBody RequestMentDto mentDto){
+
+        String ment = mentDto.ment();
         String url = "http://3.106.186.161/api/recommend";
 
         int value = LocalDateTime.now().getMonth().getValue();
@@ -97,7 +99,9 @@ public class ModelController implements ModelApi {
     @PostMapping("/{memberId}/{flowerId}")
     public ResponseEntity<ResponseHarmonyWitnMentDto> selectFlower(@PathVariable ("memberId") Long memberId,
                                                    @PathVariable ("flowerId") Long flowerId,
-                                                   @RequestBody String ment){
+                                                   @RequestBody RequestMentDto mentDto){
+
+        String ment = mentDto.ment();
 
         inputMessageService.saveInputMessage(memberId,ment);
 
@@ -143,7 +147,9 @@ public class ModelController implements ModelApi {
 
     @PostMapping("/{flowerId}/non")
     public ResponseEntity<ResponseHarmonyWitnMentDto> selectFlowerNonMember(@PathVariable ("flowerId") Long flowerId,
-                                                                            @RequestBody String ment){
+                                                                            @RequestBody RequestMentDto mentDto){
+        String ment = mentDto.ment();
+
         String url = "http://3.106.186.161/api/flower_color";
         Flower flower = flowerService.findById(flowerId);
 
