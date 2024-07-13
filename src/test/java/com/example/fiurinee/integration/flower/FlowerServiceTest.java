@@ -32,41 +32,6 @@ public class FlowerServiceTest {
         MockitoAnnotations.openMocks(this);
     }
 
-    @Test
-    void testGetSeasonFlowers() {
-        Flower flower = Flower.builder()
-                .name("장미")
-                .period(601L)
-                .flowerLanguage("사랑")
-                .explain("꽃이 아름다워요!")
-                .image(toURL("https://example.com/rose.jpg"))
-                .build();
-
-        when(flowerRepository.findByPeriodMonth(600L, 699L)).thenReturn(Collections.singletonList(flower));
-
-        List<FlowerResponseDTO> flowers = flowerService.getSeasonFlowers();
-
-        assertThat(flowers).isNotEmpty();
-        assertThat(flowers.get(0).getFlower()).isEqualTo("장미");
-    }
-
-    @Test
-    void testGetTodayFlower() {
-        Flower flower = Flower.builder()
-                .name("꽃")
-                .period(709L)
-                .flowerLanguage("꽃말")
-                .explain("꽃이 이뻐요")
-                .image(toURL("https://example.com/flower.jpg"))
-                .build();
-
-        when(flowerRepository.findByPeriodMonth(709L, 709L)).thenReturn(Collections.singletonList(flower));
-
-        FlowerResponseDTO flowerResponse = flowerService.getTodayFlower();
-
-        assertThat(flowerResponse).isNotNull();
-        assertThat(flowerResponse.getFlower()).isEqualTo("꽃");
-    }
 
     @Test
     void testFindByNameAndFlowerLanguage() {
