@@ -25,5 +25,8 @@ public interface FlowerRepository extends JpaRepository<Flower, Long> {
     List<Flower> findDistinctByNameContaining(@Param("name") String name);
 
     @Query(value = "SELECT DISTINCT ON (f.name) f.* FROM flower f", nativeQuery = true)
-    Page<Flower> findDistinctAll(Pageable pageable);
+    List<Flower> findDistinctAll(Pageable pageable);
+
+    @Query(value = "SELECT COUNT(DISTINCT f.name) FROM flower f", nativeQuery = true)
+    long countDistinctFlowers();
 }

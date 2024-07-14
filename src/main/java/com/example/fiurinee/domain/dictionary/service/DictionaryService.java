@@ -19,7 +19,7 @@ public class DictionaryService {
 
     public List<DictionaryResponseDTO> getAllFlowers(int page, int size) {
         PageRequest pageRequest = PageRequest.of(page - 1, size);
-        Page<Flower> flowers = flowerRepository.findDistinctAll(pageRequest);
+        List<Flower> flowers = flowerRepository.findDistinctAll(pageRequest);
         return flowers.stream()
                 .map(DictionaryResponseDTO::of)
                 .collect(Collectors.toList());
@@ -33,7 +33,7 @@ public class DictionaryService {
     }
 
     public int getTotalPages(int size) {
-        long count = flowerRepository.count();
+        long count = flowerRepository.countDistinctFlowers();
         return (int) Math.ceil((double) count / size);
     }
 }
