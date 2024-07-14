@@ -1,6 +1,8 @@
 package com.example.fiurinee.domain.flower.repository;
 
 import com.example.fiurinee.domain.flower.entity.Flower;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -18,4 +20,13 @@ public interface FlowerRepository extends JpaRepository<Flower, Long> {
     List<Flower> findByNameAndFlowerLanguage(String name,String flowerLanguage);
 
     List<Flower> findByName(String name);
+
+    @Query(value = "SELECT DISTINCT ON (f.name) f.* FROM flower f WHERE f.name LIKE %:name%", nativeQuery = true)
+    List<Flower> findDistinctByNameContaining(@Param("name") String name);
+
+    @Query(value = "SELECT DISTINCT ON (f.name) f.* FROM flower f", nativeQuery = true)
+    List<Flower> findDistinctAll(Pageable pageable);
+
+    @Query(value = "SELECT COUNT(DISTINCT f.name) FROM flower f", nativeQuery = true)
+    long countDistinctFlowers();
 }
