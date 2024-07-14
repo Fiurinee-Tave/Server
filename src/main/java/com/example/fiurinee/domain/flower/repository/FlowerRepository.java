@@ -21,9 +21,9 @@ public interface FlowerRepository extends JpaRepository<Flower, Long> {
 
     List<Flower> findByName(String name);
 
-    @Query(value = "SELECT * FROM (SELECT *, ROW_NUMBER() OVER (PARTITION BY name ORDER BY flower_id) as row_num FROM flower) as flowers WHERE row_num = 1 AND name LIKE %:name%", nativeQuery = true)
+    @Query(value = "SELECT DISTINCT ON (f.name) f.* FROM flower f WHERE f.name LIKE %:name%", nativeQuery = true)
     List<Flower> findDistinctByNameContaining(@Param("name") String name);
 
-    @Query(value = "SELECT * FROM (SELECT *, ROW_NUMBER() OVER (PARTITION BY name ORDER BY flower_id) as row_num FROM flower) as flowers WHERE row_num = 1", nativeQuery = true)
+    @Query(value = "SELECT DISTINCT ON (f.name) f.* FROM flower f", nativeQuery = true)
     Page<Flower> findDistinctAll(Pageable pageable);
 }
