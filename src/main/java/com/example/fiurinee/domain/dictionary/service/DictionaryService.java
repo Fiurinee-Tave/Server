@@ -31,4 +31,9 @@ public class DictionaryService {
                 .map(DictionaryResponseDTO::of)
                 .collect(Collectors.toList());
     }
+
+    public int getTotalPages(int size) {
+        long count = flowerRepository.count();
+        return (int) Math.ceil((double) count / size);
+    }
 }

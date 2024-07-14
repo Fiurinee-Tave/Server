@@ -34,4 +34,15 @@ public interface DictionaryApi {
     @ApiResponse(responseCode = "401", description = "인증 실패")
     @GetMapping("/search")
     ResponseEntity<List<DictionaryResponseDTO>> searchFlowers(@RequestParam String name);
+
+    @Operation(
+            summary = "총 페이지 수 조회",
+            description = "전체 꽃 목록의 총 페이지 수를 조회합니다.",
+            security = @SecurityRequirement(name = "bearerAuth")
+    )
+    @ApiResponse(responseCode = "200", description = "총 페이지 수 조회 성공")
+    @ApiResponse(responseCode = "401", description = "인증 실패")
+    @GetMapping("/total-pages")
+    ResponseEntity<Integer> getTotalPages(@RequestParam int size);
 }
+

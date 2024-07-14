@@ -27,5 +27,11 @@ public class DictionaryController implements DictionaryApi {
         return ResponseEntity.ok(flowers);
     }
 
+    @Override
+    public ResponseEntity<Integer> getTotalPages(int size) {
+        int totalPages = dictionaryService.getTotalPages(size);
+        return ResponseEntity.ok(totalPages);
+    }
+
 }
 
