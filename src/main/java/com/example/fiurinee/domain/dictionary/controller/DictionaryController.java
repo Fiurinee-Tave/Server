@@ -16,7 +16,7 @@ public class DictionaryController implements DictionaryApi {
 
     @Override
     public ResponseEntity<List<DictionaryResponseDTO>> getAllFlowers(int page) {
-        int size = 8; // 한 페이지에 보여줄 꽃의 개수
+        int size = 12; // 한 페이지에 보여줄 꽃의 개수
         List<DictionaryResponseDTO> flowers = dictionaryService.getAllFlowers(page, size);
         return ResponseEntity.ok(flowers);
     }
