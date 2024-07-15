@@ -10,20 +10,9 @@
 
 ## 💻 Technology
 ***
-![](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
-![](https://img.shields.io/badge/Spring_Security-6DB33F?style=for-the-badge&logo=Spring-Security&logoColor=white)
-![](https://img.shields.io/badge/Springboot-6DB33F?style=for-the-badge&logo=Springboot&logoColor=white)
-![](https://img.shields.io/badge/redis-%23DD0031.svg?&style=for-the-badge&logo=redis&logoColor=white)
-![](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
-![](https://img.shields.io/badge/docker-2496ED?style=for-the-badge&logo=docker&logoColor=white")
-![](https://img.shields.io/badge/JWT-100000?style=for-the-badge&logoColor=white)
+![spring](https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white)&nbsp; ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white) &nbsp;![amazon](https://img.shields.io/badge/Amazon_AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white) &nbsp;![docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white) <br>
+![ec2](https://img.shields.io/badge/amazonec2-FF9900?style=for-the-badge&logo=amazonec2&logoColor=white)&nbsp; ![GitAction](https://img.shields.io/badge/GitAction-000000.svg?style=for-the-badge&logo=ECS&logoColor=white)&nbsp; ![RDS](https://img.shields.io/badge/RDS-0058CC.svg?style=for-the-badge&logo=ECS&logoColor=white) &nbsp; ![S3](https://img.shields.io/badge/S3-BD081C.svg?style=for-the-badge&logo=ECS&logoColor=white)&nbsp; ![Route53](https://img.shields.io/badge/Route53-593D88.svg?style=for-the-badge&logo=ECS&logoColor=white) ![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?style=for-the-badge&logo=redis&logoColor=white)
 
-
-## 🤝🏻 Co-working Tool
-***
-![](https://img.shields.io/badge/IntelliJ_IDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white)
-![](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)
-![](https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white)
 
 ## 🗂️ Commit Convention
 ***
