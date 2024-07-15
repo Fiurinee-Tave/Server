@@ -7,7 +7,8 @@
 
 ## 📜 ERD 설계도
 ***
-![image](https://github.com/user-attachments/assets/df141b7a-1721-4290-9fed-886a8165ead7)
+![image](https://github.com/user-attachments/assets/d27aafa9-ffbf-48c4-abbd-abd569bf3856)
+
 
 
 ## 💻 Technology
