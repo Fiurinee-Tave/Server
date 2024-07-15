@@ -44,10 +44,10 @@ public class CommonLoginSuccessHandler implements AuthenticationSuccessHandler {
         String redirectUri = null;
 
         if(principal.getMemberDto().phoneNumber() == null) {
-            redirectUri = "https://fiurinee.site/phone";
+            redirectUri = "http://localhost:3000/phone";
         }
         else{
-            redirectUri = "https://fiurinee.site/auth";
+            redirectUri = "http://localhost:3000/auth";
         }
 
         Long memberId = principal.getMemberDto().id();
