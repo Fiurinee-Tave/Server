@@ -2,12 +2,13 @@
 
 ## 🔍 System Architecture
 ***
-![image](https://github.com/user-attachments/assets/2f9f2518-9be5-4069-af90-03975d71a140)
+![image](https://github.com/user-attachments/assets/d27aafa9-ffbf-48c4-abbd-abd569bf3856)
 
 
 ## 📜 ERD 설계도
 ***
-![image](https://github.com/user-attachments/assets/d27aafa9-ffbf-48c4-abbd-abd569bf3856)
+![image](https://github.com/user-attachments/assets/df141b7a-1721-4290-9fed-886a8165ead7)
+
 
 
 
