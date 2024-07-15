@@ -16,11 +16,11 @@
 ***
 #### Framwork - ![spring](https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white)&nbsp; 
 
-#### Database ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white) &nbsp; ![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?style=for-the-badge&logo=redis&logoColor=white)
+#### Database - ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white) &nbsp; ![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?style=for-the-badge&logo=redis&logoColor=white)
 
-#### Aws ![amazon](https://img.shields.io/badge/Amazon_AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white) &nbsp; ![ec2](https://img.shields.io/badge/amazonec2-FF9900?style=for-the-badge&logo=amazonec2&logoColor=white)&nbsp; ![RDS](https://img.shields.io/badge/RDS-0058CC.svg?style=for-the-badge&logo=ECS&logoColor=white) &nbsp; ![S3](https://img.shields.io/badge/S3-BD081C.svg?style=for-the-badge&logo=ECS&logoColor=white)&nbsp; ![Route53](https://img.shields.io/badge/Route53-593D88.svg?style=for-the-badge&logo=ECS&logoColor=white)
+#### Aws - ![amazon](https://img.shields.io/badge/Amazon_AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white) &nbsp; ![ec2](https://img.shields.io/badge/amazonec2-FF9900?style=for-the-badge&logo=amazonec2&logoColor=white)&nbsp; ![RDS](https://img.shields.io/badge/RDS-0058CC.svg?style=for-the-badge&logo=ECS&logoColor=white) &nbsp; ![S3](https://img.shields.io/badge/S3-BD081C.svg?style=for-the-badge&logo=ECS&logoColor=white)&nbsp; ![Route53](https://img.shields.io/badge/Route53-593D88.svg?style=for-the-badge&logo=ECS&logoColor=white)
 
-#### CI/CD![docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)  ![GitAction](https://img.shields.io/badge/GitAction-000000.svg?style=for-the-badge&logo=ECS&logoColor=white)&nbsp; 
+#### CI/CD - ![docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)  ![GitAction](https://img.shields.io/badge/GitAction-000000.svg?style=for-the-badge&logo=ECS&logoColor=white)&nbsp; 
 
 ## 🗂️ Commit Convention
 ***
