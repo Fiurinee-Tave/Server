@@ -16,7 +16,7 @@
 ***
 #### Framwork - ![spring](https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white)&nbsp; 
 
-#### Security - ![springsecurity](https://img.shields.io/badge/springsecurity-6DB33F.svg?style=for-the-badge&logo=springsecurity&logoColor=white)
+#### Security - ![springsecurity](https://img.shields.io/badge/springsecurity-6DB33F.svg?style=for-the-badge&logo=springsecurity&logoColor=white)&nbsp; ![jsonwebtokens](https://img.shields.io/badge/jsonwebtokens-000000.svg?style=for-the-badge&logo=jsonwebtokens&logoColor=white)&nbsp; 
 
 #### Database - ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white) &nbsp; ![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?style=for-the-badge&logo=redis&logoColor=white)
 
