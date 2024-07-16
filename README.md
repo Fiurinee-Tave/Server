@@ -11,8 +11,8 @@
 | 통합 개발 환경 | IntelliJ                                    |
 |------|---------------------------------------------|
 | Spring 버전 | 3.2.5                                       |
-| 데이터베이스 | AWS RDS, Redis                              |
-| 배포  | AWS EC2, S3                                 |
+| 데이터베이스 | AWS RDS, Redis, PostgreSql                             |
+| 배포  | AWS EC2, S3, AWS LoadBalancer, Route 53                                 |
 | Project 빌드 관리 도구 | 	Gradle                                     |
 | CI/CD 툴 | Github Actions, CodeDeploy                  |
 | ERD 다이어그램 툴 | ERDCloud                                    |
