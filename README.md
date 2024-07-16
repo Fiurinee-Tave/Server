@@ -19,16 +19,20 @@
 | Java version	 | Java 17                                     |
 | API 테스트     | PostMan, Swagger              |
 
+<br><br>
 ## 🔍 System Architecture
 ![image](https://github.com/user-attachments/assets/d27aafa9-ffbf-48c4-abbd-abd569bf3856)
+
+<brbr>
 
 ## 📜 API Docs
 
 ### 🔗[API Docs](https://s-organization-311.gitbook.io/untitled)
+<br><br>
 
 ## ☁️  ERD 설계도
 ![image](https://github.com/user-attachments/assets/df141b7a-1721-4290-9fed-886a8165ead7)
-
+<br><br>
 
 
 
@@ -44,6 +48,7 @@
 
 #### CI/CD - ![docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)  ![GitAction](https://img.shields.io/badge/GitAction-000000.svg?style=for-the-badge&logo=ECS&logoColor=white)&nbsp; 
 
+<br><br>
 ## 🗂️ Commit Convention
 
 
@@ -62,6 +67,7 @@
 | `remove`   | 파일을 삭제하는 작업만 수행한 경우                         |
 | `ci`       | 배포 방식 수정 및 새로 추가 / 기존 배포 스크립트 수정            |
 
+<br><br>
 ## 🐬 Git Flow
 
 `main`: 출시 가능한 프로덕션 코드의 브랜치
