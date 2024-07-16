@@ -5,20 +5,34 @@
 |:-----:|:-----:|
 | [<img src="https://github.com/Tave-13th-Project-Team-4-Fiurinee/.github/blob/main/profile/image/%EC%9D%B4%EC%A4%80%EB%B2%94.jpg" alt="이준범" width="150" height="150"> <br/> @ss7622](https://github.com/ss7622) | [<img src="https://github.com/Tave-13th-Project-Team-4-Fiurinee/.github/blob/main/profile/image/%EB%B0%B1%EC%A7%80%ED%98%84.jpg" alt="백지현" width="150" height="150"> <br/> @qormoon](https://github.com/qormoon) | 
 
+
+## 🛠️ 개발 환경
+
+| 통합 개발 환경 | IntelliJ                                    |
+|------|---------------------------------------------|
+| Spring 버전 | 3.2.5                                       |
+| 데이터베이스 | AWS RDS, Redis                              |
+| 배포  | AWS EC2, S3                                 |
+| Project 빌드 관리 도구 | 	Gradle                                     |
+| CI/CD 툴 | Github Actions, CodeDeploy                  |
+| ERD 다이어그램 툴 | ERDCloud                                    |
+| Java version	 | Java 17                                     |
+| API 테스트     | PostMan, Swagger              |
+
 ## 🔍 System Architecture
-***
 ![image](https://github.com/user-attachments/assets/d27aafa9-ffbf-48c4-abbd-abd569bf3856)
 
+## 📜 API Docs
 
-## 📜 ERD 설계도
-***
+### 🔗[API Docs](https://s-organization-311.gitbook.io/untitled)
+
+## ☁️  ERD 설계도
 ![image](https://github.com/user-attachments/assets/df141b7a-1721-4290-9fed-886a8165ead7)
 
 
 
 
 ## 💻 Technology
-***
 #### Framwork - ![spring](https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white)&nbsp; 
 
 #### Security - ![springsecurity](https://img.shields.io/badge/springsecurity-6DB33F.svg?style=for-the-badge&logo=springsecurity&logoColor=white)&nbsp; ![jsonwebtokens](https://img.shields.io/badge/jsonwebtokens-000000.svg?style=for-the-badge&logo=jsonwebtokens&logoColor=white)&nbsp;
@@ -31,7 +45,6 @@
 #### CI/CD - ![docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)  ![GitAction](https://img.shields.io/badge/GitAction-000000.svg?style=for-the-badge&logo=ECS&logoColor=white)&nbsp; 
 
 ## 🗂️ Commit Convention
-***
 
 
 | 태그이름       | 내용                                          |
@@ -50,7 +63,7 @@
 | `ci`       | 배포 방식 수정 및 새로 추가 / 기존 배포 스크립트 수정            |
 
 ## 🐬 Git Flow
-***
+
 `main`: 출시 가능한 프로덕션 코드의 브랜치
 
 `dev`: 다음 버전을 개발하는 브랜치
