@@ -20,6 +20,7 @@
 | API 테스트     | PostMan, Swagger              |
 
 <br>
+
 ## 🔍 System Architecture
 ![image](https://github.com/user-attachments/assets/d27aafa9-ffbf-48c4-abbd-abd569bf3856)
 
