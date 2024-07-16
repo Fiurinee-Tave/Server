@@ -41,7 +41,7 @@ public class SecurityConfig {
         corsConfiguration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", corsConfiguration); // 모든 경로에 대해서 CORS 설정을 적용
+        source.registerCorsConfiguration("/**", corsConfiguration);
 
         return source;
     }
